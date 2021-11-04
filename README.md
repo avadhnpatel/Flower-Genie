@@ -2,7 +2,7 @@
 Flower arrangement recommendation system for local flower shop
 
 ## setup
-1. Creat python env
+1. Create python env
 2. execute this in terminal: `pip install flask flask_sqlalchemy pymysql pyyaml`
 3. Make sure you are in the flower_genie directory
 4. execute this in terminal: `export FLASK_APP=app`
