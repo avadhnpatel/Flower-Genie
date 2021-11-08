@@ -23,6 +23,12 @@
       <p><mark>The most popular flower recommendation system.</mark></p>
     </main>
     
+    <div class="container">
+        <div class="input-group mb-3">
+            <input type="text" id= "search_request" class="form-control" aria-label="user-name" aria-describedby="basic-addon1">
+            <button id="search" type="button" class="btn btn-primary">Search</button>
+        </div>
+    </div>
 
     <div class="container">    
         
@@ -43,15 +49,15 @@
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="task-form-display">Name</span>
-                    <input type="text" class="form-control" placeholder="username" aria-label="user-name" aria-describedby="basic-addon1">
+                    <input type="text" id= "username" class="form-control0" placeholder="username" aria-label="user-name" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="task-form-display">Email</span>
-                    <input type="text" class="form-control" placeholder="user@gmail.com" aria-label="user-email" aria-describedby="basic-addon1">
+                    <input type="text" id="email" class="form-control1" placeholder="user@gmail.com" aria-label="user-email" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="task-form-display">Password</span>
-                    <input type="text" class="form-control" placeholder="user password" aria-label="user-password" aria-describedby="basic-addon1">
+                    <input type="text" id="password" class="form-control2" placeholder="user password" aria-label="user-password" aria-describedby="basic-addon1">
                 </div>
             </div>
             <div class="modal-footer">
@@ -96,7 +102,7 @@
                     <td><button type="button" class="btn btn-outline-success btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
                 {%endif%} -->
                 
-                <td><button type="button" class="btn btn-outline-info btn-sm edit" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{item.id}}" data-content="{{item.name}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
+                <td><button type="button" class="btn btn-outline-info btn-sm edit" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{item.id}}" data-name="{{item.name}}" data-email="{{item.email}}" data-password="{{item.password}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
 
                 <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{item.id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
             </tr>

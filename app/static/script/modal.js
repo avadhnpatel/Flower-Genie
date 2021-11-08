@@ -3,35 +3,69 @@ $(document).ready(function () {
     // show modal
     $('#task-modal').on('show.bs.modal', function (event) {
         const button = $(event.relatedTarget) // Button that triggered the modal
-        const taskID = button.data('source') // Extract info from data-* attributes
-        const content = button.data('content') // Extract info from data-* attributes
+        const userID = button.data('source') // Extract info from data-* attributes
+        const name = button.data('name') // Extract info from data-* attributes
+        const email = button.data('email')
+        const password = button.data('password')
 
         const modal = $(this)
-        if (taskID === 'New Task') {
-            modal.find('.modal-title').text(taskID)
-            $('#task-form-display').removeAttr('taskID')
+        if (userID === 'New Task') {
+            modal.find('.modal-title').text(userID)
+            $('#task-form-display').removeAttr('userID')
         } else {
-            modal.find('.modal-title').text('Edit Task ' + taskID)
-            $('#task-form-display').attr('taskID', taskID)
+            modal.find('.modal-title').text('Edit User ' + userID)
+            $('#task-form-display').attr('taskID', userID)
         }
 
-        if (content) {
-            modal.find('.form-control').val(content);
+        if (name) {
+            modal.find('.form-control0').val(name);
         } else {
-            modal.find('.form-control').val('');
+            modal.find('.form-control0').val('');
+        }
+
+        if (email) {
+            modal.find('.form-control1').val(email);
+        } else {
+            modal.find('.form-control1').val('');
+        }
+
+        if (password) {
+            modal.find('.form-control2').val(password);
+        } else {
+            modal.find('.form-control2').val('');
         }
     })
 
 
     $('#submit-task').click(function () {
         const tID = $('#task-form-display').attr('taskID');
-        console.log($('#task-modal').find('.form-control').val())
+        console.log(document.getElementById('username').value, document.getElementById('email').value, document.getElementById('password').value)
         $.ajax({
             type: 'POST',
             url: tID ? '/edit/' + tID : '/create',
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({
-                'description': $('#task-modal').find('.form-control').val()
+                'username': document.getElementById('username').value,
+                'email': document.getElementById('email').value,
+                'password': document.getElementById('password').value
+            }),
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+
+    $('#search').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/', 
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'search': document.getElementById('search_request').value
             }),
             success: function (res) {
                 console.log(res.response)
@@ -61,7 +95,7 @@ $(document).ready(function () {
     $('.state').click(function () {
         const state = $(this)
         const tID = state.data('source')
-        const new_state
+        const new_state = 0;
         if (state.text() === "In Progress") {
             new_state = "Complete"
         } else if (state.text() === "Complete") {
