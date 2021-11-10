@@ -3,19 +3,20 @@ from app import app
 from app import database as db_helper
 
 items = db_helper.search_user('')
-@app.route("/delete/<int:user_id>", methods=['POST'])
-def delete(user_id):
+recent_search = ''
+@app.route("/user/delete/<int:user_id>", methods=['POST'])
+def delete_user(user_id):
     try:
         db_helper.remove_id_user(user_id)
         result = {"success": True, "response": "Removed Task"}
     except:
         result = {"success": False, "response": "Something went wrong"}
-        
+    user_page()
     return jsonify(result)
 
 
-@app.route("/edit/<int:user_id>", methods=['POST'])
-def update(user_id):
+@app.route("/user/edit/<int:user_id>", methods=['POST'])
+def update_user(user_id):
     data = request.get_json()
     try:
         if "username" in data:
@@ -31,13 +32,15 @@ def update(user_id):
             result = {"success": True, "response": "Nothing Updated"}
     except:
         result = {"success": False, "response": "Something went wrong"}
+    user_page()
     return jsonify(result)
 
-@app.route("/create", methods=['POST'])
-def create():
+@app.route("/user/create", methods=['POST'])
+def create_user():
     data = request.get_json()
     db_helper.insert_new_user_user(data['username'], data['email'], data['password'])
     result = {"success": True, "response": "Done"}
+    user_page()
     return jsonify(result)
 
 # @app.route("/search", methods=['POST'])
@@ -47,13 +50,18 @@ def create():
 #     result = {"success": True, "response": "Done"}
 #     return jsonify(result)
 
-@app.route("/", methods=['POST', 'GET'])
-def homepage():
+@app.route("/user", methods=['POST', 'GET'])
+def user_page():
     global items
+    global recent_search
     if request.method == 'POST':
         data = request.get_json()
         # print(data["search"])
-        items = db_helper.search_user(data['search'])
+        if data == None or 'search' not in data:
+            items = db_helper.search_user(recent_search)
+        else:
+            items = db_helper.search_user(data['search'])
+            recent_search = data['search']
         # print(items)
     return render_template("index.html", items=items)
 
@@ -71,8 +79,13 @@ def arrangement():
 
 @app.route('/user')
 def user():
-    return render_template('user.html')
+    return render_template('index.html')
 
 @app.route('/answer')
 def answer():
     return render_template('answer.html')
+
+@app.route('/home')
+def home():
+    return render_template('home.html')
+

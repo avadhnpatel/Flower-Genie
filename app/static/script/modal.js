@@ -37,12 +37,12 @@ $(document).ready(function () {
     })
 
 
-    $('#submit-task').click(function () {
+    $('#submit-user').click(function () {
         const tID = $('#task-form-display').attr('taskID');
         console.log(document.getElementById('username').value, document.getElementById('email').value, document.getElementById('password').value)
         $.ajax({
             type: 'POST',
-            url: tID ? '/edit/' + tID : '/create',
+            url: tID ? '/user/edit/' + tID : '/user/create',
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({
                 'username': document.getElementById('username').value,
@@ -59,10 +59,32 @@ $(document).ready(function () {
         });
     });
 
-    $('#search').click(function () {
+    $('#submit-wishlist').click(function () {
+        const tID = $('#task-form-display').attr('taskID');
+        console.log(document.getElementById('username').value, document.getElementById('email').value, document.getElementById('password').value)
         $.ajax({
             type: 'POST',
-            url: '/', 
+            url: tID ? '/user/edit/' + tID : '/user/create',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'userID': document.getElementById('userID').value,
+                'occasion': document.getElementById('occasion').value,
+                'arrangementID': document.getElementById('arrangementID').value
+            }),
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+
+    $('#search-user').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/user', 
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({
                 'search': document.getElementById('search_request').value
@@ -77,11 +99,11 @@ $(document).ready(function () {
         });
     });
 
-    $('.remove').click(function () {
+    $('.removeUser').click(function () {
         const remove = $(this)
         $.ajax({
             type: 'POST',
-            url: '/delete/' + remove.data('source'),
+            url: '/user/delete/' + remove.data('source'),
             success: function (res) {
                 console.log(res.response)
                 location.reload();

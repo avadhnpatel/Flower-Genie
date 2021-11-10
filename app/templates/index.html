@@ -26,12 +26,16 @@
     <div class="container">
         <div class="input-group mb-3">
             <input type="text" id= "search_request" class="form-control" aria-label="user-name" aria-describedby="basic-addon1">
-            <button id="search" type="button" class="btn btn-primary">Search</button>
+            <button id="search-user" type="button" class="btn btn-primary">Search</button>
         </div>
     </div>
 
     <div class="container">    
-        <button onclick="location.href = 'answer';" id="myButton" class="float-left submit-button" >Home</button>
+        <button onclick="location.href = 'home';" id="myButton" class="float-left submit-button btn btn-primary" >Home</button>
+        <button onclick="location.href = 'answer';" id="myButton" class="float-left submit-button btn btn-primary" >Answers</button>
+        <button onclick="location.href = 'arrangement';" id="myButton" class="float-left submit-button btn btn-primary" >Arrangements</button>
+        <button onclick="location.href = 'flower';" id="myButton" class="float-left submit-button btn btn-primary" >Flowers</button>
+        <button onclick="location.href = 'wishlist';" id="myButton" class="float-left submit-button btn btn-primary" >Wishlists</button>
 
         <!-- Button trigger modal -->
         <div style="text-align: right;">
@@ -63,7 +67,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button id="submit-task" type="button" class="btn btn-primary">Save changes</button>
+                <button id="submit-user" type="button" class="btn btn-primary">Save changes</button>
             </div>
             </div>
         </div>
