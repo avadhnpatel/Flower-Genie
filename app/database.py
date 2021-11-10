@@ -2,15 +2,20 @@ from app import db
 
 def fetch_todo():
     conn = db.connect()
-    query_results = conn.execute("Select * from User").fetchall()
+    query_results = conn.execute("Select * from Answer").fetchall()
     conn.close()
     user_list = []
     for i in query_results:
         item = {
-            'id': i[0],
-            'name': i[1],
-            'email': i[2],
-            'password': i[3]
+            'answersID': i[0],
+            'userID': i[1],
+            'arrangementID': i[2],
+            'party_Size': i[3],
+            'budget' : i[4],
+            'preferred_Flower' : i[5],
+            'preferred_Color' : i[6],
+            'preferred_Style' : i[7],
+            'satisfaction': i[8]
         }
         user_list.append(item)
     return user_list

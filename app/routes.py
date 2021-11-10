@@ -51,6 +51,10 @@ def homepage():
     if request.method == 'POST':
         data = request.get_json()
         items = db_helper.search_user(data['search'])
-        return render_template("index.html", items=items)
+        return render_template("answer.html", items=items)
     items = db_helper.fetch_todo()
-    return render_template("index.html", items=items)
+    return render_template("answer.html", items=items)
+
+@app.route('/wishlist')
+def wishlist():
+    return url_for('static', filename='wishlist.html')
