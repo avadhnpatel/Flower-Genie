@@ -33,8 +33,7 @@
 <body>
 
     <main role="main" class="container extra-bottom">
-        <h1 class="mt-5">Flower Genie Demo</h1>
-        <p><mark>The most popular flower recommendation system.</mark></p>
+        <h1 class="mt-5">Flower Table</h1>
     </main>
 
     <div class="container">
@@ -55,7 +54,7 @@
         <!-- Button trigger modal -->
         <div style="text-align: right;">
             <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
-                data-bs-target="#task-modal" data-source="New Task">Add User</button>
+                data-bs-target="#task-modal" data-source="New Task">Add Flower</button>
         </div>
 
 
@@ -63,30 +62,50 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="Label">Add a User</h5>
+                        <h5 class="modal-title" id="Label">Add a Flower</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <div class="modal-body">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="task-form-display">Name</span>
-                            <input type="text" id="username" class="form-control0" placeholder="username"
+                            <span class="input-group-text" id="task-form-display">Flower ID</span>
+                            <input type="text" id="flowerID" class="form-control0" placeholder="username"
                                 aria-label="user-name" aria-describedby="basic-addon1">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="task-form-display">Email</span>
-                            <input type="text" id="email" class="form-control1" placeholder="user@gmail.com"
+                            <span class="input-group-text" id="task-form-display">Flower Name</span>
+                            <input type="text" id="flowerName" class="form-control1" placeholder="user@gmail.com"
                                 aria-label="user-email" aria-describedby="basic-addon1">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="task-form-display">Password</span>
-                            <input type="text" id="password" class="form-control2" placeholder="user password"
+                            <span class="input-group-text" id="task-form-display">Image</span>
+                            <input type="text" id="image" class="form-control2" placeholder="user password"
+                                aria-label="user-password" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="task-form-display">Color</span>
+                            <input type="text" id="color" class="form-control2" placeholder="user password"
+                                aria-label="user-password" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="task-form-display">Arrangement ID 1</span>
+                            <input type="text" id="arrangementID1" class="form-control2" placeholder="user password"
+                                aria-label="user-password" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="task-form-display">Arrangement ID 2</span>
+                            <input type="text" id="arrangementID2" class="form-control2" placeholder="user password"
+                                aria-label="user-password" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="task-form-display">Arrangement ID 3</span>
+                            <input type="text" id="arrangementID3" class="form-control2" placeholder="user password"
                                 aria-label="user-password" aria-describedby="basic-addon1">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button id="submit-user" type="button" class="btn btn-primary">Save changes</button>
+                        <button id="submit-flower" type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -99,10 +118,13 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th class="user-id">uid</th>
-                    <th class="name">Name</th>
-                    <th class="email">Email</th>
-                    <th class="password">Password</th>
+                    <th class="flowerID">Flower ID</th>
+                    <th class="flowerName">Flower Name</th>
+                    <th class="image">Image</th>
+                    <th class="color">Color</th>
+                    <th class="arrangementID1">Arrangement ID 1</th>
+                    <th class="arrangementID2">Arrangement ID 2</th>
+                    <th class="arrangementID3">Arrangement ID 3</th>
                     <th class="edit">Edit</th>
                     <th class="update">Remove</th>
                 </tr>
@@ -111,10 +133,13 @@
             <tbody>
                 {% for item in items %}
                 <tr>
-                    <td>{{item.id}}</td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.email}}</td>
-                    <td>{{item.password}}</td>
+                    <td>{{item.flowerID}}</td>
+                    <td>{{item.flowerName}}</td>
+                    <td>{{item.image}}</td>
+                    <td>{{item.color}}</td>
+                    <td>{{item.arrangementID1}}</td>
+                    <td>{{item.arrangementID2}}</td>
+                    <td>{{item.arrangementID3}}</td>
 
                     <!-- {% if item.status == "In Progress" %}
                     <td><button type="button" class="btn btn-outline-warning btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
