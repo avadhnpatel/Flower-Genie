@@ -29,7 +29,7 @@ def fetch_user_table():
     user_list = []
     for i in query_results:
         item = {
-            'userID': i[0],
+            'id': i[0],
             'name': i[1],
             'email': i[2],
             'password': i[3],
@@ -373,7 +373,7 @@ def search_user(search_text):
             'password': i[3]
         }
         user_list.append(item)
-    # print(user_list)
+    #print(user_list)
     return user_list
 
 def search_wishlist(search_text):
