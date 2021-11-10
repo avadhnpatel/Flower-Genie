@@ -36,8 +36,26 @@ $(document).ready(function () {
         }
     })
 
+    var Create = document.getElementById('createChar');
 
-    $('#submit-task').click(function () {
+    Create.addEventListener("click", function (e) {
+
+        //window.open(url); //opens in a new tab, WHICH IS NOT DESIRED !!!
+        //window.location.replace(url); //doesnt work either.
+        $.ajax({
+            type: 'POST',
+            url: '/wishlist',
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+
+    $('#submit-user').click(function () {
         const tID = $('#task-form-display').attr('taskID');
         console.log(document.getElementById('username').value, document.getElementById('email').value, document.getElementById('password').value)
         $.ajax({
@@ -59,10 +77,107 @@ $(document).ready(function () {
         });
     });
 
+    $('#submit-wishlist').click(function () {
+        const tID = $('#task-form-display').attr('taskID');
+        console.log(document.getElementById('username').value, document.getElementById('email').value, document.getElementById('password').value)
+        $.ajax({
+            type: 'POST',
+            url: tID ? '/edit/' + tID : '/create',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'userID': document.getElementById('userID').value,
+                'occasion': document.getElementById('occasion').value,
+                'arrangement': document.getElementById('arrangementID').value
+            }),
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+
+    $('#submit-arrangement').click(function () {
+        const tID = $('#task-form-display').attr('taskID');
+        console.log(document.getElementById('username').value, document.getElementById('email').value, document.getElementById('password').value)
+        $.ajax({
+            type: 'POST',
+            url: tID ? '/edit/' + tID : '/create',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'flrName': document.getElementById('flrName').value,
+                'description': document.getElementById('description').value,
+                'quantity': document.getElementById('quantity').value,
+                'price': document.getElementById('price').value
+            }),
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+
+    $('#submit-answer').click(function () {
+        const tID = $('#task-form-display').attr('taskID');
+        console.log(document.getElementById('username').value, document.getElementById('email').value, document.getElementById('password').value)
+        $.ajax({
+            type: 'POST',
+            url: tID ? '/edit/' + tID : '/create',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'userID': document.getElementById('userID').value,
+                'arrangementID': document.getElementById('arrangementID').value,
+                'party_Size': document.getElementById('party_Size').value,
+                'budget': document.getElementById('budget').value,
+                'preferred_Flower': document.getElementById('preferred_Flower').value,
+                'preferred_Color': document.getElementById('preferred_Color').value,
+                'preferred_Style': document.getElementById('preferred_Style').value,
+                'satisfaction': document.getElementById('satisfaction').value
+            }),
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+
+    $('#submit-flower').click(function () {
+        const tID = $('#task-form-display').attr('taskID');
+        console.log(document.getElementById('username').value, document.getElementById('email').value, document.getElementById('password').value)
+        $.ajax({
+            type: 'POST',
+            url: tID ? '/edit/' + tID : '/create',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'flowerName': document.getElementById('flowerName').value,
+                'image': document.getElementById('image').value,
+                'color': document.getElementById('color').value,
+                'arrangementID1': document.getElementById('arrangementID1').value,
+                'arrangementID2': document.getElementById('arrangementID2').value,
+                'arrangementID3': document.getElementById('arrangementID3').value
+            }),
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+
     $('#search').click(function () {
         $.ajax({
             type: 'POST',
-            url: '/', 
+            url: '/',
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({
                 'search': document.getElementById('search_request').value
