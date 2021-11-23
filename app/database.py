@@ -157,7 +157,7 @@ def remove_id_answer(answer_id):
 # *******WISHLIST FUNCTIONS**********
 
 
-def update_wishlistID_entry_wishlist(wishlistID, userID):
+def update_userID_entry_wishlist(wishlistID, userID):
     conn = db.connect() 
     query = 'Update Wishlist set userID = "{}" where wishlistID = {};'.format(userID, wishlistID)
     conn.execute(query)
@@ -169,7 +169,7 @@ def update_occasion_entry_wishlist(wishlistID, occasion):
     conn.execute(query)
     conn.close()
 
-def update_occasion_entry_wishlist(wishlistID, arrangementID):
+def update_arrangementID_entry_wishlist(wishlistID, arrangementID):
     conn = db.connect() 
     query = 'Update Wishlist set arrangementID = "{}" where wishlistID = {};'.format(arrangementID, wishlistID)
     conn.execute(query)
@@ -435,3 +435,31 @@ def search_flower(search_text):
         }
         flower_list.append(item)
     return flower_list
+
+def advQueryOne():
+    conn = db.connect()
+    query_results = conn.execute("SELECT name, budget from Answer a join User u on u.userID = a.userID WHERE budget < 70 and preferred_Flower = %s UNION select name, budget from Answer g join User k on g.userID = k.userID WHERE budget > 150 and preferred_Flower = %s", ("Roses", "Roses")).fetchall()
+    conn.close()
+    query_one_list = []
+    for i in query_results:
+        item = {
+            'name': i[0],
+            'budget': i[1],
+        }
+        query_one_list.append(item)
+    return query_one_list
+
+def advQueryTwo():
+    conn = db.connect()
+    query_results = conn.execute("SELECT name, budget from Answer a join User u on u.userID = a.userID WHERE budget > 200 and preferred_Flower = %s UNION select name, budget from Answer g join User k on g.userID = k.userID WHERE budget > 200 and preferred_Flower = %s", ("Roses", "Irises")).fetchall()
+    
+    conn.close()
+    query_two_list = []
+    for i in query_results:
+        item = {
+            'name': i[0],
+            'budget': i[1],
+        }
+        query_two_list.append(item)
+    print("query_results")
+    return query_two_list

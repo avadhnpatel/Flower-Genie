@@ -40,7 +40,7 @@
         <div class="input-group mb-3">
             <input type="text" id="search_request" class="form-control" aria-label="user-name"
                 aria-describedby="basic-addon1">
-            <button id="search" type="button" class="btn btn-primary">Search</button>
+            <button id="search-wishlist" type="button" class="btn btn-primary">Search</button>
         </div>
     </div>
 
@@ -53,11 +53,11 @@
         <!-- Button trigger modal -->
         <div style="text-align: right;">
             <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
-                data-bs-target="#task-modal" data-source="New Task">Add Wishlist</button>
+                data-bs-target="#task-modal-wishlist" data-source="New Task">Add Wishlist</button>
         </div>
 
 
-        <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+        <div class="modal fade" id="task-modal-wishlist" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -67,18 +67,18 @@
 
                     <div class="modal-body">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="task-form-display">UserID</span>
-                            <input type="text" id="userID" class="form-control0" placeholder="username"
+                            <span class="input-group-text" id="task-form-display-w">UserID</span>
+                            <input type="text" id="userID" class="form-control3" placeholder="username"
                                 aria-label="user-name" aria-describedby="basic-addon1">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="task-form-display">Occasion</span>
-                            <input type="text" id="occasion" class="form-control1" placeholder="user@gmail.com"
+                            <span class="input-group-text" id="task-form-display-w">Occasion</span>
+                            <input type="text" id="occasion" class="form-control4" placeholder="user@gmail.com"
                                 aria-label="user-email" aria-describedby="basic-addon1">
                         </div>
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="task-form-display">ArrangementID</span>
-                            <input type="text" id="arrangementID" class="form-control2" placeholder="user password"
+                            <span class="input-group-text" id="task-form-display-w">ArrangementID</span>
+                            <input type="text" id="arrangementID" class="form-control5" placeholder="user password"
                                 aria-label="user-password" aria-describedby="basic-addon1">
                         </div>
                     </div>
@@ -125,11 +125,11 @@
                 {%endif%} -->
 
                     <td><button type="button" class="btn btn-outline-info btn-sm edit" data-bs-toggle="modal"
-                            data-bs-target="#task-modal" data-source="{{item.id}}" data-name="{{item.name}}"
-                            data-email="{{item.email}}" data-password="{{item.password}}"><i class="fa fa-pen fa-1"
+                            data-bs-target="#task-modal-wishlist" data-source="{{item.wishlistID}}" data-name="{{item.userID}}"
+                            data-email="{{item.occasion}}" data-password="{{item.arrangementID}}"><i class="fa fa-pen fa-1"
                                 aria-hidden="true"></i></button></td>
 
-                    <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{item.id}}"
+                    <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{item.wishlistID}}"
                             type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
                 </tr>
                 {% endfor %}

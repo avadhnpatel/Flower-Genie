@@ -36,14 +36,15 @@
         <button onclick="location.href = 'arrangement';" id="myButton" class="float-left submit-button btn btn-primary" >Arrangements</button>
         <button onclick="location.href = 'flower';" id="myButton" class="float-left submit-button btn btn-primary" >Flowers</button>
         <button onclick="location.href = 'wishlist';" id="myButton" class="float-left submit-button btn btn-primary" >Wishlists</button>
+        
 
         <!-- Button trigger modal -->
         <div style="text-align: right;">
-        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="New Task">Add User</button>
+        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal-user" data-source="New Task">Add User</button>
         </div>
 
         
-        <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+        <div class="modal fade" id="task-modal-user" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -107,7 +108,7 @@
                     <td><button type="button" class="btn btn-outline-success btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
                 {%endif%} -->
                 
-                <td><button type="button" class="btn btn-outline-info btn-sm edit" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{item.id}}" data-name="{{item.name}}" data-email="{{item.email}}" data-password="{{item.password}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
+                <td><button type="button" class="btn btn-outline-info btn-sm edit" data-bs-toggle="modal" data-bs-target="#task-modal-user" data-source="{{item.id}}" data-name="{{item.name}}" data-email="{{item.email}}" data-password="{{item.password}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
 
                 <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{item.id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
             </tr>

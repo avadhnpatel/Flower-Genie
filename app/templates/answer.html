@@ -54,11 +54,11 @@
         <!-- Button trigger modal -->
         <div style="text-align: right;">
             <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
-                data-bs-target="#task-modal" data-source="New Task">Add Answer</button>
+                data-bs-target="#task-modal-answer" data-source="New Task">Add Answer</button>
         </div>
 
 
-        <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+        <div class="modal fade" id="task-modal-answer" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -166,7 +166,7 @@
                 {%endif%} -->
 
                     <td><button type="button" class="btn btn-outline-info btn-sm edit" data-bs-toggle="modal"
-                            data-bs-target="#task-modal" data-source="{{item.id}}" data-name="{{item.name}}"
+                            data-bs-target="#task-modal-answer" data-source="{{item.id}}" data-name="{{item.name}}"
                             data-email="{{item.email}}" data-password="{{item.password}}"><i class="fa fa-pen fa-1"
                                 aria-hidden="true"></i></button></td>
 
