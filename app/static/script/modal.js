@@ -1,3 +1,7 @@
+
+
+
+
 $(document).ready(function () {
     // example: https://getbootstrap.com/docs/4.2/components/modal/
     // show modal
@@ -35,7 +39,7 @@ $(document).ready(function () {
             modal.find('.form-control2').val('');
         }
     })
-    
+
 
 
     $('#submit-user').click(function () {
@@ -60,12 +64,15 @@ $(document).ready(function () {
         });
     });
 
-    
+    $('#myButton').click(function () {
+        console.log("hello");
+    });
+
 
     $('#search-user').click(function () {
         $.ajax({
             type: 'POST',
-            url: '/user', 
+            url: '/user',
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({
                 'search': document.getElementById('search_request').value
@@ -233,13 +240,13 @@ $(document).ready(function () {
             modal.find('.form-control1').val('');
         }
 
-        
+
     });
 
     $('#search-wishlist').click(function () {
         $.ajax({
             type: 'POST',
-            url: '/wishlist', 
+            url: '/wishlist',
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({
                 'search': document.getElementById('search_request').value
@@ -278,7 +285,7 @@ $(document).ready(function () {
         });
     });
 
-    
+
     $('.removeWishlist').click(function () {
         const remove = $(this)
         $.ajax({

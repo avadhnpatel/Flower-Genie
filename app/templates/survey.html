@@ -1,0 +1,174 @@
+<head>     
+    <meta charset="utf-8">
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+    <link rel="icon" href="{{ url_for('static', filename='img/cs.ico') }}">
+       
+        
+    <link rel="stylesheet" type="text/css" href="static/styles/survey.css" />
+
+        
+    <script src="{{ url_for('static', filename='script/modal.js') }}"></script>
+        
+
+</head>
+
+<style>
+    body {
+        font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, Sans-Serif;
+    }
+
+    .main {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        color: #ffffff;
+        overflow-y: scroll;
+        font-size: 24px
+    }
+
+    .main::after {
+        content: "";
+        background: #007f67;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .main>h1,
+    .main>p {
+        text-align: center;
+        font-family: 35px;
+        z-index: 2;
+        position: relative
+    }
+
+    .main-content {
+        background-color: #009579;
+        max-width: 650px;
+        display: flex;
+        flex-direction: column;
+        padding: 40px;
+        margin: 0 auto;
+        margin-bottom: 40px;
+        border-radius: 5px;
+        z-index: 2;
+        position: relative;
+        box-shadow: 0px -1px 10px 5px white;
+    }
+
+    #name,
+    #email,
+    #number,
+    #dropdown,
+    #comment {
+        display: block;
+        width: 100%;
+        height: 35px;
+        padding: 5px 10px;
+        color: #000000;
+        background-color: #ffffff;
+        border: 1px solid #eeeeee;
+        border-radius: 5px;
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
+
+    label[for=name],
+    label[for=email],
+    label[for=number],
+    label[for=dropdown],
+    label[for=comment] {
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+
+    #video-length,
+    #content-quality,
+    #more-videos,
+    fieldset input {
+        height: 20px;
+        width: 20px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+
+    #comment {
+        min-height: 180px;
+    }
+
+    label[for=comment] {
+        margin-top: 30px
+    }
+
+    #submit {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        background: #37af65;
+        border-radius: 2px;
+        cursor: pointer;
+        border: 0;
+        color: #ffffff;
+        font-size: 20px;
+    }
+</style>
+
+<div class="main">
+
+    <h1 id="title">Flower Genie Survey</h1>
+
+
+    <div class="main-content">
+        <div class="form-content">
+            <form id="survey-form">
+                <label for="name" id="name-label">Preferred Flower</label>
+                <input id="name" type="text" placeholder="Enter your preferred flower" />
+
+                <label for="name" id="name-label">Preferred Style</label>
+                <input id="name" type="text" placeholder="Enter your preferred style" />
+
+                <label for="dropdown">Which color would you prefer?</label>
+                <select id="dropdown">
+                    <option value="None">None</option>
+                    <option value="Red">Red</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="Green">Green</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Purple">Purple</option>
+                </select>
+
+                <label for="dropdown">What is your party size?</label>
+                <select id="dropdown">
+                    <option value="None">None</option>
+                    <option value="Red">Put</option>
+                    <option value="Orange">Something</option>
+                    <option value="Yellow">Idk</option>
+                    <option value="Green">Bruh</option>
+                    <option value="Blue">l</option>
+                    <option value="Purple">a</option>
+                </select>
+
+                <label for="dropdown">What is your budget?</label>
+                <select id="dropdown">
+                    <option value="None">None</option>
+                    <option value="Red">Red</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="Green">Green</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Purple">Purple</option>
+                </select>
+
+                <button type="submit" id="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

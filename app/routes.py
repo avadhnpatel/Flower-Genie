@@ -219,3 +219,15 @@ def querytwo():
     data = request.get_json()
     items = db_helper.advQueryTwo()
     return render_template("query2.html", items=items)
+
+@app.route("/survey", methods=['GET'])
+def survey():
+    data = request.get_json()
+    items = db_helper.advQueryTwo()
+    return render_template("survey.html", items=items)
+
+@app.route("/login", methods=['GET'])
+def login():
+    data = request.get_json()
+    items = db_helper.advQueryTwo()
+    return render_template("login.html", items=items)
