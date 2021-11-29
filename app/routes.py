@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from app import app
 from app import database as db_helper
+import sys
 
 items = []
 user_items = db_helper.search_user('')
@@ -8,6 +9,8 @@ answer_items = db_helper.search_answer('')
 arrangement_items = db_helper.search_arrangement('')
 flower_items = db_helper.search_flower('')
 wishlist_items = db_helper.search_wishlist('')
+query1items = db_helper.advQueryOne()
+query2items = db_helper.advQueryTwo()
 recent_search = ''
 @app.route("/user/delete/<int:user_id>", methods=['POST'])
 def delete_user(user_id):
@@ -177,6 +180,24 @@ def flower_name():
         # print(items)
     return render_template("flower.html", items=flower_items)
 
+@app.route("/query1", methods=['GET'])
+def queryone():
+    global query1items
+    global recent_search
+    if request.method == 'POST':
+        query1items = db_helper.advQueryOne()
+        # print(items)
+    return render_template("query1.html", items=query1items)
+    
+@app.route("/query2", methods=['GET'])
+def querytwo():
+    global query2items
+    global recent_search
+    if request.method == 'POST':
+        query2items = db_helper.advQueryTwo()
+        # print(items)
+    return render_template("query2.html", items=query2items)
+
 @app.route('/wishlist')
 def wishlist():
     return render_template('wishlist.html')
@@ -208,17 +229,6 @@ def query1():
 @app.route('/query2')
 def query2():
     return render_template('query2.html')
-
-@app.route("/query1", methods=['GET'])
-def queryone():
-    items = advQueryOne()
-    return render_template("query1.html", items = items)
-
-@app.route("/query2", methods=['GET'])
-def querytwo():
-    data = request.get_json()
-    items = db_helper.advQueryTwo()
-    return render_template("query2.html", items=items)
 
 @app.route("/survey", methods=['GET'])
 def survey():

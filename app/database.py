@@ -440,14 +440,14 @@ def advQueryOne():
     conn = db.connect()
     query_results = conn.execute("SELECT name, budget from Answer a join User u on u.userID = a.userID WHERE budget < 70 and preferred_Flower = %s UNION select name, budget from Answer g join User k on g.userID = k.userID WHERE budget > 150 and preferred_Flower = %s", ("Roses", "Roses")).fetchall()
     conn.close()
-    query_one_list = []
+    answer_list = []
     for i in query_results:
         item = {
             'name': i[0],
             'budget': i[1],
         }
-        query_one_list.append(item)
-    return query_one_list
+        answer_list.append(item)
+    return answer_list
 
 def advQueryTwo():
     conn = db.connect()
