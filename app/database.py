@@ -1,3 +1,4 @@
+import re
 from app import db
 
 
@@ -463,3 +464,23 @@ def advQueryTwo():
         query_two_list.append(item)
     print("query_results")
     return query_two_list
+
+def loginCheck(username, password):
+    conn = db.connect()
+    query_results = conn.execute("SELECT * FROM User where name LIKE %s AND password LIKE %s", (username, password)).fetchall()
+    
+    conn.close()
+    users = []
+    for i in query_results:
+        item = {
+            'id': i[0],
+            'name': i[1],
+            'email': i[2],
+            'password': i[3]
+        }
+        users.append(item)
+
+        if len(users) == 1:
+            return True
+        else:
+            return False

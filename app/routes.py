@@ -244,7 +244,7 @@ def login():
 
 @app.route("/")
 def starting_url():
-    return redirect("/home")
+    return redirect("/intro")
 
 @app.route("/login/create", methods=['POST'])
 def loginCreate():
@@ -254,7 +254,7 @@ def loginCreate():
     return jsonify(result)
 
 @app.route("/login/validate", methods=['POST'])
-def loginCreate():
+def loginValidate():
     data = request.get_json()
     db_helper.insert_new_user_user(data['username'], data['password'])
     result = {"success": True, "response": "Done"}
