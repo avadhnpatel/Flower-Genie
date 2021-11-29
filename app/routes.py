@@ -240,4 +240,22 @@ def survey():
 def login():
     data = request.get_json()
     items = db_helper.advQueryTwo()
-    return render_template("login.html", items=items)
+    return render_template("login.html")
+
+@app.route("/login/create", methods=['POST'])
+def loginCreate():
+    data = request.get_json()
+    db_helper.insert_new_user_user(data['username'], data['email'], data['password'])
+    result = {"success": True, "response": "Done"}
+    return jsonify(result)
+
+@app.route("/login/validate", methods=['POST'])
+def loginCreate():
+    data = request.get_json()
+    db_helper.insert_new_user_user(data['username'], data['password'])
+    result = {"success": True, "response": "Done"}
+    return jsonify(result)
+
+@app.route('/intro')
+def intro():
+    return render_template('intro.html')
