@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 from app import app
 from app import database as db_helper
 import sys
@@ -241,3 +241,7 @@ def login():
     data = request.get_json()
     items = db_helper.advQueryTwo()
     return render_template("login.html", items=items)
+
+@app.route("/")
+def starting_url():
+    return redirect("/home")
