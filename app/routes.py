@@ -245,7 +245,6 @@ def login():
 @app.route("/")
 def starting_url():
     return redirect("/home")
-    return render_template("login.html")
 
 @app.route("/login/create", methods=['POST'])
 def loginCreate():
