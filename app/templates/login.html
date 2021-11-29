@@ -8,9 +8,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}"> -->
 
     <script src="{{ url_for('static', filename='script/login.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
 
 </head>
 <style>
@@ -152,14 +163,14 @@
             <h1 class="form__title">Login</h1>
             <div class="form__message form__message--error"></div>
             <div class="form__input-group">
-                <input type="text" class="form__input" autofocus placeholder="Username or email">
+                <input type="text" id="loginUsername" class="form__input" autofocus placeholder="Username or email">
                 <div class="form__input-error-message"></div>
             </div>
             <div class="form__input-group">
-                <input type="password" class="form__input" autofocus placeholder="Password">
+                <input type="password" id="loginPassword" class="form__input" autofocus placeholder="Password">
                 <div class="form__input-error-message"></div>
             </div>
-            <button class="form__button" type="submit">Continue</button>
+            <button class="form__button" id="loginButton" type="submit">Continue</button>
 
             <p class="form__text">
                 <a class="form__link" href="./" id="linkCreateAccount">Don't have an account? Create account</a>
@@ -173,18 +184,18 @@
                 <div class="form__input-error-message"></div>
             </div>
             <div class="form__input-group">
-                <input type="text" class="form__input" autofocus placeholder="Email Address">
+                <input type="text" id="signupEmail" class="form__input" autofocus placeholder="Email Address">
                 <div class="form__input-error-message"></div>
             </div>
             <div class="form__input-group">
-                <input type="password" class="form__input" autofocus placeholder="Password">
+                <input type="password" id="signupPassword" class="form__input" autofocus placeholder="Password">
                 <div class="form__input-error-message"></div>
             </div>
-            <div class="form__input-group">
+            <!-- <div class="form__input-group">
                 <input type="password" class="form__input" autofocus placeholder="Confirm password">
                 <div class="form__input-error-message"></div>
-            </div>
-            <button class="form__button" type="submit">Continue</button>
+            </div> -->
+            <button class="form__button" id="createAccountButton" type="submit">Continue</button>
             <p class="form__text">
                 <a class="form__link" href="./" id="linkLogin">Already have an account? Sign in</a>
             </p>
@@ -192,5 +203,47 @@
     </div>
 </body>
 
+<script>
+    document.getElementById("loginButton").addEventListener("click", () => {
+        console.log(document.getElementById('loginUsername').value, document.getElementById('loginPassword').value);
+        $.ajax({
+            type: 'POST',
+            url: '/login/validate',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'username': document.getElementById('loginUsername').value,
+                'password': document.getElementById('loginPassword').value,
+            }),
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+
+    document.getElementById("createAccountButton").addEventListener("click", () => {
+        console.log(document.getElementById('signupUsername').value, document.getElementById('signupEmail').value, document.getElementById('signupPassword').value);
+        $.ajax({
+            type: 'POST',
+            url: '/login/create',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'username': document.getElementById('signupUsername').value,
+                'email': document.getElementById('signupEmail').value,
+                'password': document.getElementById('signupPassword').value
+            }),
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+</script>
 
 </html>

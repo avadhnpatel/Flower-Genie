@@ -16,6 +16,28 @@ function clearInputError(inputElement) {
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
 
+document.getElementById("createAccountButton").addEventListener("click", () => {
+    // const tID = $('#task-form-display').attr('taskID');
+    console.log("test");
+    // $.ajax({
+    //     type: 'POST',
+    //     url: '/login/create',
+    //     contentType: 'application/json;charset=UTF-8',
+    //     data: JSON.stringify({
+    //         'username': document.getElementById('signupUsername').value,
+    //         'email': document.getElementById('signupEmail').value,
+    //         'password': document.getElementById('signupPassword').value
+    //     }),
+    //     success: function (res) {
+    //         console.log(res.response)
+    //         location.reload();
+    //     },
+    //     error: function () {
+    //         console.log('Error');
+    //     }
+    // });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
     const createAccountForm = document.querySelector("#createAccount");
