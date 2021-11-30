@@ -2,6 +2,14 @@ import re
 from app import db
 
 
+# *******AVADHS FUNC**********
+
+# def getuid(username, password):
+#    conn = db.connect()
+#     query_results = conn.execute("SELECT uid FROM User where (email like %s) AND password LIKE %s", (username, password)).fetchall()
+    
+#     conn.close() 
+
 # *******FETCH TABLE FUNCTIONS**********
 def fetch_answer_table():
     conn = db.connect()

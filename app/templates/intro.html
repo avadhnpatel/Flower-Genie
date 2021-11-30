@@ -6,33 +6,64 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
+    body,
+    h1 {
         font-family: "Raleway", sans-serif;
-        font-size: 100px;
     }
 
-    body {
-        background: #007f67;
-        color: white;
+    body,
+    html {
+        height: 100%
+    }
+
+    .bigSize {
+        font-size: 2rem;
+    }
+
+    .bgimg {
+        background-image: url("https://wallpaperaccess.com/full/2443945.jpg");
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .form__button {
+        font: 500 1rem 'Raleway', sans-serif;
+    }
+
+    .form__button {
+        width: 100%;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #ffffff;
+        border: none;
+        border-radius: var(--border-radius);
+        outline: none;
+        cursor: pointer;
+        background: var(--color-primary);
+    }
+
+    .form__button:hover {
+        background: var(--color-primary-dark);
+    }
+
+    .form__button:active {
+        transform: scale(0.98);
     }
 </style>
 
 <body>
 
-    <!-- w3-content defines a container for fixed size centered content, 
-and is wrapped around the whole page content, except for the footer in this example -->
-    <div class="" style="max-width:1400px">
-
-        <!-- Header -->
-        <header class="w3-container w3-center w3-padding-32">
-            <h1><b>Flower Genie</b></h1>
-            <button onclick="location.href = 'login';">Log In</button>
-        </header>
-
+    <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+        <div class="w3-display-topleft w3-padding-large w3-xlarge">
+            <button onclick="location.href = 'login';" class="form__button" id="createAccountButton" type="submit">Log
+                In or Create Account</button>
+        </div>
+        <div class="w3-display-middle">
+            <h1 class="w3-jumbo w3-animate-top">Flower Genie</h1>
+            <hr class="w3-border-grey" style="margin:auto;width:40%">
+            <p class="w3-large w3-center">Flower Reccomendation System</p>
+        </div>
 
     </div>
 

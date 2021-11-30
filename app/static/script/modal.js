@@ -1,7 +1,3 @@
-
-
-
-
 $(document).ready(function () {
     // example: https://getbootstrap.com/docs/4.2/components/modal/
     // show modal

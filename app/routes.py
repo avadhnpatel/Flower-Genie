@@ -11,6 +11,7 @@ flower_items = db_helper.search_flower('')
 wishlist_items = db_helper.search_wishlist('')
 query1items = db_helper.advQueryOne()
 query2items = db_helper.advQueryTwo()
+uinfo = []
 recent_search = ''
 page_status = "stay"
 @app.route("/user/delete/<int:user_id>", methods=['POST'])
@@ -240,6 +241,7 @@ def login():
     global page_status
     if page_status == 'leave':
         page_status = 'stay'
+        print()
         return redirect('/survey')
     return render_template("login.html")
 
@@ -257,6 +259,9 @@ def loginCreate():
 @app.route("/login/validate", methods=['POST', 'GET'])
 def loginValidate():
     data = request.get_json()
+    # global uinfo
+    # uinfo = [data['username'], data['password'], db_helper.getuid(data['username'], data['password'])]
+    
     x = db_helper.loginCheck(data['username'], data['password'])
     global page_status
     if x:
@@ -271,7 +276,7 @@ def loginValidate():
 def intro():
     return render_template('intro.html')
 
-@app.route("/answer/create", methods=['POST'])
+@app.route("/survey/create", methods=['POST'])
 def create_answer():
     data = request.get_json()
     db_helper.insert_new_answer(data['userID'], data['arrangementID'], data['party_Size'], data['budget'], data['preferred_Flower'], data['preferred_Color'], data['preferred_Style'], data['satisfaction'])
