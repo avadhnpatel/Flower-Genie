@@ -147,10 +147,11 @@
 
 <body>
     <div class="bgimg main">
-
-        <h1 id="title">Flower Genie Survey</h1>
-
-
+        {% for item in items%}
+        {% if loop.index0 == 3 %}
+        <h1 id="title">Welcome {{item}}</h1>
+        {%endif%}
+        {% endfor %}
         <div class="main-content">
             <div class="form-content">
                 <form id="survey-form">
@@ -279,6 +280,7 @@
                         <option value="Green">Green</option>
                         <option value="Blue">Blue</option>
                         <option value="Purple">Purple</option>
+                        <option value="Pink">Pink</option>
                     </select>
 
                     <label for="dropdown">What is your party size?</label>

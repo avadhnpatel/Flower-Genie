@@ -4,11 +4,37 @@ from app import db
 
 # *******AVADHS FUNC**********
 
-# def getuid(username, password):
-#    conn = db.connect()
-#     query_results = conn.execute("SELECT uid FROM User where (email like %s) AND password LIKE %s", (username, password)).fetchall()
-    
-#     conn.close() 
+def getuid(username, password):
+    conn = db.connect()
+    query_results = conn.execute("SELECT userID FROM User where (email like %s) AND password LIKE %s", (username, password)).fetchall()
+    conn.close()
+    if not query_results:
+        return False
+    # for i in query_results:
+    #     item = {
+    #         'id': i[0],
+    #         'name': i[1],
+    #         'email': i[2],
+    #         'password': i[3]
+    #     }
+    #     users.append(item)
+    return query_results[0][0]
+   
+def getname(username, password):
+    conn = db.connect()
+    query_results = conn.execute("SELECT name FROM User where (email like %s) AND password LIKE %s", (username, password)).fetchall()
+    conn.close()
+    if not query_results:
+        return False
+    # for i in query_results:
+    #     item = {
+    #         'id': i[0],
+    #         'name': i[1],
+    #         'email': i[2],
+    #         'password': i[3]
+    #     }
+    #     users.append(item)
+    return query_results[0][0]
 
 # *******FETCH TABLE FUNCTIONS**********
 def fetch_answer_table():

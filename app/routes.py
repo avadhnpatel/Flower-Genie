@@ -234,14 +234,15 @@ def query2():
 @app.route('/survey', methods=['GET'])
 def survey():
     print("reached")
-    return render_template("survey.html")
+    print(uinfo)
+    return render_template("survey.html", items=uinfo)
 
 @app.route('/login', methods=['POST','GET'])
 def login():
     global page_status
     if page_status == 'leave':
         page_status = 'stay'
-        print()
+        # print(uinfo)
         return redirect('/survey')
     return render_template("login.html")
 
@@ -259,9 +260,11 @@ def loginCreate():
 @app.route("/login/validate", methods=['POST', 'GET'])
 def loginValidate():
     data = request.get_json()
-    # global uinfo
-    # uinfo = [data['username'], data['password'], db_helper.getuid(data['username'], data['password'])]
-    
+    global uinfo
+    y = db_helper.getuid(data['username'], data['password'])
+    n = db_helper.getname(data['username'], data['password'])
+    uinfo = [data['username'], data['password'], y, n]
+    # print(y, n, uinfo)
     x = db_helper.loginCheck(data['username'], data['password'])
     global page_status
     if x:
