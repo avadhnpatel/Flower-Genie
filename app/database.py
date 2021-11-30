@@ -467,10 +467,12 @@ def advQueryTwo():
 
 def loginCheck(username, password):
     conn = db.connect()
-    query_results = conn.execute("SELECT * FROM User where name LIKE %s AND password LIKE %s", (username, password)).fetchall()
+    query_results = conn.execute("SELECT * FROM User where (email like %s) AND password LIKE %s", (username, password)).fetchall()
     
     conn.close()
     users = []
+    if(not len(query_results)):
+        return False
     for i in query_results:
         item = {
             'id': i[0],
@@ -480,7 +482,7 @@ def loginCheck(username, password):
         }
         users.append(item)
 
-        if len(users) == 1:
-            return True
-        else:
-            return False
+    if len(users) >= 1:
+        return True
+    else:
+        return False

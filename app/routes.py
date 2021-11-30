@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, redirect
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from app import app
 from app import database as db_helper
 import sys
@@ -230,33 +230,35 @@ def query1():
 def query2():
     return render_template('query2.html')
 
-@app.route("/survey", methods=['GET'])
+@app.route('/survey', methods=['GET'])
 def survey():
-    data = request.get_json()
-    items = db_helper.advQueryTwo()
-    return render_template("survey.html", items=items)
+    return render_template("survey.html")
 
-@app.route("/login", methods=['GET'])
+@app.route('/login', methods=['GET'])
 def login():
-    data = request.get_json()
-    items = db_helper.advQueryTwo()
-    return render_template("login.html", items=items)
+    return render_template("login.html")
 
 @app.route("/")
 def starting_url():
     return redirect("/intro")
 
-@app.route("/login/create", methods=['POST'])
+@app.route("/login/create", methods=['POST', 'GET'])
 def loginCreate():
     data = request.get_json()
     db_helper.insert_new_user_user(data['username'], data['email'], data['password'])
     result = {"success": True, "response": "Done"}
     return jsonify(result)
 
-@app.route("/login/validate", methods=['POST'])
+@app.route("/login/validate", methods=['POST', 'GET'])
 def loginValidate():
     data = request.get_json()
-    db_helper.insert_new_user_user(data['username'], data['password'])
+    x = db_helper.loginCheck(data['username'], data['password'])
+    if x:
+        print("test passed", x)
+        survey()
+    else:
+        print("test failed")
+        login()
     result = {"success": True, "response": "Done"}
     return jsonify(result)
 
