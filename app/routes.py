@@ -265,3 +265,11 @@ def loginValidate():
 @app.route('/intro')
 def intro():
     return render_template('intro.html')
+
+@app.route("/answer/create", methods=['POST'])
+def create_answer():
+    data = request.get_json()
+    db_helper.insert_new_answer(data['userID'], data['arrangementID'], data['party_Size'], data['budget'], data['preferred_Flower'], data['preferred_Color'], data['preferred_Style'], data['satisfaction'])
+    result = {"success": True, "response": "Done"}
+    answer_page()
+    return jsonify(result)
