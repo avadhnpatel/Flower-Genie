@@ -114,6 +114,7 @@
                     <th class="description">Description</th>
                     <th class="quantity">Quantity</th>
                     <th class="price">Price</th>
+                    <th class="purpose">Purpose</th>
                     <th class="edit">Edit</th>
                     <th class="update">Remove</th>
                 </tr>
@@ -124,9 +125,10 @@
                 <tr>
                     <td>{{item.arrangementID}}</td>
                     <td>{{item.flrName}}</td>
-                    <td>{{item.description}}</td>
                     <td>{{item.quantity}}</td>
                     <td>{{item.price}}</td>
+                    <td>{{item.purpose}}</td>
+                    <td>{{item.description}}</td>
 
                     <!-- {% if item.status == "In Progress" %}
                     <td><button type="button" class="btn btn-outline-warning btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>

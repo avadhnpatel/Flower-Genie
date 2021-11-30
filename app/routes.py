@@ -159,26 +159,25 @@ def arrangement_page():
         data = request.get_json()
         # print(data["search"])
         if data == None or 'search' not in data:
-            arrangement_items = db_helper.search_user(recent_search)
+            arrangement_items = db_helper.search_arrangement(recent_search)
         else:
-            arrangement_items = db_helper.search_user(data['search'])
+            arrangement_items = db_helper.search_arrangement(data['search'])
             recent_search = data['search']
         # print(items)
     return render_template("arrangement.html", items=arrangement_items)
 
 @app.route("/flower", methods=['POST', 'GET'])
-def flower_name():
+def flower_page():
     global flower_items
     global recent_search
     if request.method == 'POST':
         data = request.get_json()
         # print(data["search"])
         if data == None or 'search' not in data:
-            flower_items = db_helper.search_user(recent_search)
+            flower_items = db_helper.search_flower(recent_search)
         else:
-            flower_items = db_helper.search_user(data['search'])
+            flower_items = db_helper.search_flower(data['search'])
             recent_search = data['search']
-        # print(items)
     return render_template("flower.html", items=flower_items)
 
 @app.route("/query1", methods=['GET'])
@@ -203,9 +202,9 @@ def querytwo():
 def wishlist():
     return render_template('wishlist.html')
 
-@app.route('/flower')
-def flower():
-    return render_template('flower.html')
+# @app.route('/flower')
+# def flower():
+#     return render_template('flower.html')
 
 @app.route('/arrangement')
 def arrangement():

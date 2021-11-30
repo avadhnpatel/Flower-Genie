@@ -68,6 +68,7 @@ def fetch_arrangement_table():
             'description': i[5]
         }
         arrangement_list.append(item)
+    # print(arrangement_list)
     return arrangement_list
 
 def fetch_flower_table():
@@ -86,6 +87,7 @@ def fetch_flower_table():
             'arrangementID3': i[6]
         }
         flower_list.append(item)
+
     return flower_list
 
 
@@ -407,10 +409,12 @@ def search_arrangement(search_text):
     wishlist_list = []
     for i in query_results:
         item = {
-            'wishlistID': i[0],
-            'userID': i[1],
-            'occasion': i[2],
-            'arrangementID': i[3],
+            'arrangementID': i[0],
+            'flrName': i[1],
+            'quantity': i[2],
+            'price': i[3],
+            'purpose': i[4],
+            'description': i[5]
         }
         wishlist_list.append(item)
     return wishlist_list
@@ -435,7 +439,30 @@ def search_flower(search_text):
             'arrangementID3': i[6]
         }
         flower_list.append(item)
+    # family_list = []
+    # for rows in flower_list:
+    #     splitup = rows["flowerName"].split()
+    #     flag = 1
+    #     for i in splitup:
+    #         if "→" in i:
+    #             flag = 0
+    #             family_list.append(i.split("→")[2])
+    #     if flag == 1:
+    #         family_list.append(splitup[0])
+
+    # family_list = set(family_list)
+    # print(len(family_list))
     return flower_list
+
+
+
+
+    ##############RECOMMENDATIONS##################
+
+# def recommendations(flower, style, color, party_size, budget):
+    
+
+
 
 def advQueryOne():
     conn = db.connect()
@@ -462,7 +489,7 @@ def advQueryTwo():
             'budget': i[1],
         }
         query_two_list.append(item)
-    print("query_results")
+    # print("query_results")
     return query_two_list
 
 def loginCheck(username, password):
