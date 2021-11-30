@@ -12,6 +12,7 @@ wishlist_items = db_helper.search_wishlist('')
 query1items = db_helper.advQueryOne()
 query2items = db_helper.advQueryTwo()
 recent_search = ''
+page_status = "stay"
 @app.route("/user/delete/<int:user_id>", methods=['POST'])
 def delete_user(user_id):
     try:
@@ -232,10 +233,15 @@ def query2():
 
 @app.route('/survey', methods=['GET'])
 def survey():
+    print("reached")
     return render_template("survey.html")
 
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['POST','GET'])
 def login():
+    global page_status
+    if page_status == 'leave':
+        page_status = 'stay'
+        return redirect('/survey')
     return render_template("login.html")
 
 @app.route("/")
@@ -253,12 +259,12 @@ def loginCreate():
 def loginValidate():
     data = request.get_json()
     x = db_helper.loginCheck(data['username'], data['password'])
+    global page_status
     if x:
         print("test passed", x)
-        survey()
+        page_status = 'leave'
     else:
         print("test failed")
-        login()
     result = {"success": True, "response": "Done"}
     return jsonify(result)
 
