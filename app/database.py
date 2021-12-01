@@ -446,11 +446,13 @@ def search_arrangement(search_text):
         item = {
             'arrangementID': i[0],
             'flrName': i[1],
-            'quantity': i[2],
-            'price': i[3],
-            'purpose': i[4],
-            'description': i[5]
-        }
+            'price': i[2],
+            'purpose': i[3],
+            'description': i[4],
+            'flowerID1': i[5],
+            'flowerID2': i[6],
+            'flowerID3': i[7]
+            }
         wishlist_list.append(item)
     return wishlist_list
 
@@ -468,10 +470,7 @@ def search_flower(search_text):
             'flowerID': i[0],
             'flowerName': i[1],
             'image': i[2],
-            'color': i[3],
-            'arrangementID1': i[4],
-            'arrangementID2': i[5],
-            'arrangementID3': i[6]
+            'color': i[3]
         }
         flower_list.append(item)
     # family_list = []
@@ -494,21 +493,11 @@ def search_flower(search_text):
 
     ##############RECOMMENDATIONS##################
 
-def recommendations(flower, style, color, party_size, budget):
+def recommendations(flower_family, style, color, party_size, budget):
     with db.connect() as conn:
         query_results = conn.execute(
             f"""
-            CREATE PROCEDURE Recommendation()
-            
-            BEGIN
-            DECLARE done int default 0;
-            DECLARE cur CURSOR FOR SELECT DISTINCT arrangementID FROM Arrangement;
-            DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
-            
-            DROP TABLE IF EXISTS Output;
-            CREATE TABLE Output (
-                
-            )
+           
             """
         )
     return []
