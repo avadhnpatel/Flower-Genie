@@ -282,7 +282,8 @@ def intro():
 @app.route("/survey/create", methods=['POST'])
 def create_answer():
     data = request.get_json()
-    db_helper.insert_new_answer(data['userID'], data['party_Size'], data['budget'], data['preferred_Flower'], data['preferred_Color'], data['preferred_Style'])
+    db_helper.recommendations(flower123, preferred_flower1, preferred_flower2, preferred_flower3, style, color, party_size, budget)
+    # db_helper.insert_new_answer(data['userID'], data['party_Size'], data['budget'], data['preferred_Flower'], data['preferred_Color'], data['preferred_Style'])
     result = {"success": True, "response": "Done"}
     answer_page()
     return jsonify(result)
