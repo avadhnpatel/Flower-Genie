@@ -493,13 +493,13 @@ def search_flower(search_text):
 
     ##############RECOMMENDATIONS##################
 
-def recommendations(flower_family, style, color, party_size, budget):
-    with db.connect() as conn:
-        query_results = conn.execute(
-            f"""
-           
-            """
-        )
+def recommendations(flower123, preferred_flower1, preferred_flower2, preferred_flower3, style, color, party_size, budget):
+    conn = db.connect() 
+    query = 'CALL Recommendation("{}", "{}","{}","{}","{}","{}",{},{});'.format(flower123, preferred_flower1, preferred_flower2, preferred_flower3, style, color, party_size, budget)
+    query_results = conn.execute(query)
+    conn.close()
+    for i in query_results:
+        print(i)
     return []
 
 
