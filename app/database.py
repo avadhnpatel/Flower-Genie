@@ -99,7 +99,10 @@ def fetch_arrangement_table():
             'quantity': i[2],
             'price': i[3],
             'purpose': i[4],
-            'description': i[5]
+            'description': i[5],
+            'flowerID1': i[6],
+            'flowerID2': i[7],
+            'flowerID3': i[8]
         }
         arrangement_list.append(item)
     # print(arrangement_list)
@@ -116,9 +119,6 @@ def fetch_flower_table():
             'flowerName': i[1],
             'image': i[2],
             'color': i[3],
-            'arrangementID1': i[4],
-            'arrangementID2': i[5],
-            'arrangementID3': i[6]
         }
         flower_list.append(item)
 
@@ -258,13 +258,31 @@ def update_description_entry_arrangement(arrangementID, description):
     query = 'Update Arrangement set description = "{}" where arrangementID = {};'.format(description, arrangementID)
     conn.execute(query)
     conn.close()
+
+def update_flowerID1_entry_arrangement(arrangementID, flowerID1):
+    conn = db.connect() 
+    query = 'Update Arrangement set flowerID1 = "{}" where arrangementID = {};'.format(flowerID1, arrangementID)
+    conn.execute(query)
+    conn.close()
     
-def insert_new_arrangement(flrName, quantity, price, purpose, description):
+def update_flowerID2_entry_arrangement(arrangementID, flowerID2):
+    conn = db.connect() 
+    query = 'Update Arrangement set flowerID2 = "{}" where arrangementID = {};'.format(flowerID2, arrangementID)
+    conn.execute(query)
+    conn.close()
+
+def update_flowerID3_entry_arrangement(arrangementID, flowerID3):
+    conn = db.connect() 
+    query = 'Update Arrangement set flowerID3 = "{}" where arrangementID = {};'.format(flowerID3, arrangementID)
+    conn.execute(query)
+    conn.close()
+    
+def insert_new_arrangement(flrName, quantity, price, purpose, description, flowerID1, flowerID2, flowerID3):
     conn = db.connect()
     results = conn.execute('Select MAX(arrangementID)+1 From Arrangement')
     results = [x for x in results]
     max_id = results[0][0]
-    query = 'Insert Into Wishlist (arrangementID, flrName, quantity, price, purpose, description) VALUES ({}, "{}", "{}", "{}", "{}", "{}");'.format(max_id, flrName, quantity, price, purpose, description)
+    query = 'Insert Into Wishlist (arrangementID, flrName, quantity, price, purpose, description, flowerID1, flowerID2, flowerID3) VALUES ({}, "{}", "{}", "{}", "{}", "{}");'.format(flrName, quantity, price, purpose, description, flowerID1, flowerID2, flowerID3)
     conn.execute(query)
     conn.close()
     
@@ -295,30 +313,13 @@ def update_color_entry_flower(flowerID, color):
     conn.execute(query)
     conn.close()
     
-def update_arrangementID1_entry_flower(flowerID, arrangementID1):
-    conn = db.connect() 
-    query = 'Update Flower set arrangementID1 = "{}" where flowerID = {};'.format(arrangementID1, flowerID)
-    conn.execute(query)
-    conn.close()
     
-def update_arrangementID2_entry_flower(flowerID, arrangementID2):
-    conn = db.connect() 
-    query = 'Update Flower set arrangementID2 = "{}" where flowerID = {};'.format(arrangementID2, flowerID)
-    conn.execute(query)
-    conn.close()
-
-def update_arrangementID3_entry_flower(flowerID, arrangementID3):
-    conn = db.connect() 
-    query = 'Update Flower set arrangementID3 = "{}" where flowerID = {};'.format(arrangementID3, flowerID)
-    conn.execute(query)
-    conn.close()
-    
-def insert_new_flower(flowerName, image, color, arrangementID1, arrangementID2, arrangementID3):
+def insert_new_flower(flowerName, image, color):
     conn = db.connect()
     results = conn.execute('Select MAX(flowerID)+1 From Flower')
     results = [x for x in results]
     max_id = results[0][0]
-    query = 'Insert Into Flower (flowerID, flowerName, image, color, arrangementID1, arrangementID2, arrangementID3) VALUES ({}, "{}", "{}", "{}", "{}", "{}");'.format(max_id, flowerName, image, color, arrangementID1, arrangementID2, arrangementID3)
+    query = 'Insert Into Flower (flowerID, flowerName, image, color) VALUES ({}, "{}", "{}", "{}", "{}", "{}");'.format(max_id, flowerName, image, color)
     conn.execute(query)
     conn.close()
     
@@ -493,9 +494,24 @@ def search_flower(search_text):
 
     ##############RECOMMENDATIONS##################
 
-# def recommendations(flower, style, color, party_size, budget):
-    
-
+def recommendations(flower, style, color, party_size, budget):
+    with db.connect() as conn:
+        query_results = conn.execute(
+            f"""
+            CREATE PROCEDURE Recommendation()
+            
+            BEGIN
+            DECLARE done int default 0;
+            DECLARE cur CURSOR FOR SELECT DISTINCT arrangementID FROM Arrangement;
+            DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+            
+            DROP TABLE IF EXISTS Output;
+            CREATE TABLE Output (
+                
+            )
+            """
+        )
+    return []
 
 
 def advQueryOne():
