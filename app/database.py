@@ -500,7 +500,7 @@ def recommendations(flower123, preferred_flower1, preferred_flower2, preferred_f
     conn.close()
     for i in query_results:
         print(i)
-    return []
+    return i
 
 
 def advQueryOne():
