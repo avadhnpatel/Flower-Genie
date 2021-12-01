@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Login</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+
+    <script src="{{ url_for('static', filename='script/login.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body class="bodyclass">
+    <div class="divclass first">
+        <img class="image-wrapper" src=" https://wallpaperaccess.com/full/1636332.jpg" alt="image">
+        <h1 class="flowerName">Flower 1</h1>
+    </div>
+    <div class="divclass second">
+        <img class="image-wrapper" src=" https://wallpaperaccess.com/full/1636332.jpg" alt="image">
+        <h1 class="flowerName">Flower 1</h1>
+    </div>
+    <div class="divclass third">
+        <img class="image-wrapper" src=" https://wallpaperaccess.com/full/1636332.jpg" alt="image">
+        <h1 class="flowerName">Flower 1</h1>
+    </div>
+    <div class="divclass fourth">
+        <h1>Flower 4</h1>
+    </div>
+</body>
+
+<style>
+    .bodyclass {
+        background: #009579;
+        /* min-height: 100%;
+        background-position: center;
+        background-size: cover; */
+    }
+
+    .flowerName {
+        position: relative;
+        left: 20px;
+    }
+
+    .divclass {
+        float: left;
+        width: 690px;
+        height: 370px;
+        border: 1px solid black;
+        margin: 8px;
+    }
+
+    .third {
+        clear: left;
+    }
+
+    .image-wrapper {
+        width: 25rem;
+        height: 17rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        margin-left: 1rem;
+    }
+</style>
+
+</html>

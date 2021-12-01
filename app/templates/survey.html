@@ -151,6 +151,11 @@
         {% if loop.index0 == 3 %}
         <h1 id="title">Welcome {{item}}</h1>
         {%endif%}
+
+        {% if loop.index0 == 2 %}
+        <input type="hidden" id="userID" value="{{item}}"></input>
+        {%endif%}
+
         {% endfor %}
         <div class="main-content">
             <div class="form-content">
@@ -321,15 +326,19 @@
         console.log(document.getElementById("colorInput").value);
         console.log(document.getElementById("partySizeInput").value);
         console.log(document.getElementById("budgetInput").value);
-
+        console.log(document.querySelector('#userID').value)
         $.ajax({
             type: 'POST',
             url: '/survey/create',
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({
-                'username': document.getElementById('signupUsername').value,
-                'email': document.getElementById('signupEmail').value,
-                'password': document.getElementById('signupPassword').value
+                'userID': document.getElementById('signupUsername').value,
+                'party_Size': document.getElementById('signupEmail').value,
+                'budget': document.getElementById('signupPassword').value,
+                'preferred_Flower': document.getElementById('signupPassword').value,
+                'preferred_Color': document.getElementById('signupPassword').value,
+                'preferred_Style': document.getElementById('signupPassword').value,
+                'budget': document.getElementById('signupPassword').value
             }),
             success: function (res) {
                 console.log(res.response)
@@ -340,4 +349,6 @@
             }
         });
     });
+
+    //(data['userID'], data['party_Size'], data['budget'], data['preferred_Flower'], data['preferred_Color'], data['preferred_Style'], data['satisfaction'])
 </script>
