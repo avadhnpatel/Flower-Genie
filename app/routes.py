@@ -11,9 +11,12 @@ flower_items = db_helper.search_flower('')
 wishlist_items = db_helper.search_wishlist('')
 query1items = db_helper.advQueryOne()
 query2items = db_helper.advQueryTwo()
+wishlists = []
+rec = []
 uinfo = []
 recent_search = ''
 page_status = "stay"
+page_status2 = "stay"
 @app.route("/user/delete/<int:user_id>", methods=['POST'])
 def delete_user(user_id):
     try:
@@ -231,10 +234,17 @@ def query1():
 def query2():
     return render_template('query2.html')
 
-@app.route('/survey', methods=['GET'])
+@app.route('/survey', methods=['POST','GET'])
 def survey():
     print("reached")
+    global page_status2
+    if page_status2 == 'leave':
+        page_status2 = 'stay'
+        print(rec)
+        return redirect('/recommendation')
     print(uinfo)
+    h = db_helper.getWishlists(uinfo[2])
+    print(h)
     return render_template("survey.html", items=uinfo)
 
 @app.route('/login', methods=['POST','GET'])
@@ -279,19 +289,33 @@ def loginValidate():
 def intro():
     return render_template('intro.html')
 
-@app.route("/survey/create", methods=['POST'])
+@app.route("/survey/create", methods=['POST', 'GET'])
 def create_answer():
     data = request.get_json()
-    db_helper.recommendations(data['preferred_Flower'], data['preferred_Flower1'], data['preferred_Flower2'], data['preferred_Flower3'], data['preferred_Style'], data['preferred_Color'], data['party_Size'], data['budget'])
-    db_helper.insert_new_answer(data['userID'], data['party_Size'], data['budget'], data['preferred_Flower'], data['preferred_Color'], data['preferred_Style'])
+    print("hit")
+    # print(data['preferred_Flower'], data['preferred_Flower1'], data['preferred_Flower2'], data['preferred_Flower3'], data['preferred_Style'], data['preferred_Color'], data['party_Size'], data['budget'])
+    global page_status2
+    page_status2 = 'leave'
+    global rec
+    rec = list(db_helper.recommendations(data['preferred_Flower'], data['preferred_Flower1'], data['preferred_Flower2'], data['preferred_Flower3'], data['preferred_Style'], data['preferred_Color'], data['party_Size'], data['budget']))  
+    print(rec)
+    # db_helper.insert_new_answer(data['userID'], data['party_Size'], data['budget'], data['preferred_Flower'], data['preferred_Color'], data['preferred_Style'])
     result = {"success": True, "response": "Done"}
-    answer_page()
     return jsonify(result)
 
-@app.route('/recommendation')
+@app.route('/recommendation', methods=['POST','GET'])
 def recommendation():
-    return render_template('recommendation.html')
+    print("uhhhhhh", rec)
+    return render_template('recommendation.html', items=rec)
 
 @app.route('/final')
 def final():
     return render_template('final.html')
+
+@app.route('/userWishlist')
+def userWishlist():
+    wishlists = db_helper.getWishlists(999)
+    for item in wishlists:
+        # for x in item:
+        print(item)
+    return render_template('userWishlist.html', items = wishlists)

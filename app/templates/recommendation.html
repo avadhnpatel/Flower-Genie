@@ -3,69 +3,105 @@
 <html>
 
 <head>
-    <title>Login</title>
+        <title>Login</title>
 
+        
     <meta charset="utf-8">
+        
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+        
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            
         
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+                integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+        crossorigin="anonymous">
 
+        
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css">
 
+        
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-        crossorigin="anonymous"></script>
+                integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+                crossorigin="anonymous"></script>
 
 </head>
 <header>
-    <h1 class="headertext">
-        Here Is Our Recommendation
-    </h1>
+        <h1 class="headertext">
+                Here Is Our Recommendation
+            </h1>
+        
     <hr style="margin:auto;width:60%; background: white; height: 5px; opacity: 1;">
 </header>
 
 <body class="bodyclass">
-    <div class="divclass first">
-        <img class="image-wrapper" src="https://garden.org/pics/2019-02-17/kniphofia/b56d37-300.jpg" alt="image">
-        <h3 class="flowerName headertext">Crocus corsicus</h3>
-    </div>
-    <div class="divclass second">
-        <img class="image-wrapper" src="https://garden.org/pics/2012-11-06/Char/655228-300.jpg	" alt="image">
-        <h3 class="flowerName headertext">Hemerocallis 'Mork and Mindy'</h3>
-    </div>
-    <div class="divclass third">
-        <img class="image-wrapper" src="https://garden.org/pics/2014-04-27/Ecograndma/63e59f-300.jpg	" alt="image">
-        <h3 class="flowerName headertext">Salvia Navajo™ Bright Red</h3>
-    </div>
-    <div class="fourth">
-        <p class="recMessage">This arrangement contains Crocus corsicus, Hemerocallis 'Mork and Mindy', and Salvia
-            Navajo™ Bright Red and
-            the price is 55.00 dollars.</p>
-    </div>
-    <div class="satisfied">
-        <label for="dropdown" class="satisfiedText">How Satisfied Are You on a Scale From 0-10?</label>
-        <select id="partySizeInput" class="dropdown">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-        </select>
-        <button type="submit" onclick="location.href = 'final';" class="submit" id="satisfactionSubmit">Submit</button>
-    </div>
+        <div class="divclass first">
+                {% for item in items%}
+                {% if loop.index0 == 6 %}
+                <img class="image-wrapper" src="{{item}}" alt="image">
+                {%endif%}
+                {% if loop.index0 == 0 %}
+                <h3 class="flowerName headertext">{{item}}</h3>
+                {%endif%}
+                {% endfor %}
+            </div>
+        <div class="divclass second">
+                {% for item in items%}
+                {% if loop.index0 == 7 %}
+                <img class="image-wrapper" src="{{item}}" alt="image">
+                {%endif%}
+                {% if loop.index0 == 1 %}
+                <h3 class="flowerName headertext">{{item}}</h3>
+                {%endif%}
+                {% endfor %}
+            </div>
+        <div class="divclass third">
+                {% for item in items%}
+                {% if loop.index0 == 8 %}
+                <img class="image-wrapper" src="{{item}}" alt="image">
+                {%endif%}
+                {% if loop.index0 == 2 %}
+                <h3 class="flowerName headertext">{{item}}</h3>
+                {%endif%}
+                {% endfor %}
+            </div>
+        <div class="fourth">
+                {% for item in items%}
+                {% if loop.index0 == 5 %}
+                <p class="recMessage">{{item}}</p>      
+                {%endif%}
+        {% if loop.index0 == 3 %}
+                <p class="recMessage">The price is ${{item}}.</p>      
+                {%endif%}
+                {% endfor %}
+            </div>
+        <div class="satisfied">
+                <label for="dropdown" class="satisfiedText">How Satisfied Are You on a Scale From 0-10?</label>
+                <select id="partySizeInput" class="dropdown">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                <button type="submit" onclick="location.href = 'final';" class="submit"
+            id="satisfactionSubmit">Submit</button>
+            </div>
 </body>
 
 <style>
@@ -146,16 +182,16 @@
     }
 
     /*
-    .third {
-        clear: left;
-    } */
+    .third {
+        clear: left;
+    } */
     /* .container {
-        display: flex;
-    }
+        display: flex;
+    }
 
-    .container>div {
-        flex: 1;
-    } */
+    .container>div {
+        flex: 1;
+    } */
 
     .image-wrapper {
         width: 29rem;

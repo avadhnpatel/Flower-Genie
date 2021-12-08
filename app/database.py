@@ -498,9 +498,10 @@ def recommendations(flower123, preferred_flower1, preferred_flower2, preferred_f
     query = 'CALL Recommendation("{}", "{}","{}","{}","{}","{}",{},{});'.format(flower123, preferred_flower1, preferred_flower2, preferred_flower3, style, color, party_size, budget)
     query_results = conn.execute(query)
     conn.close()
+    # print(query_results)
     for i in query_results:
-        print(i)
-    return i
+        return i
+    # return query_results
 
 
 def advQueryOne():
@@ -552,3 +553,20 @@ def loginCheck(username, password):
         return True
     else:
         return False
+
+def getWishlists(userID):
+    conn = db.connect()
+    query_results = conn.execute("select arrangementID, flrName from Wishlist natural join User join Arrangement using(arrangementID) where userID = %s;", (userID)).fetchall()
+    
+    conn.close()
+    users = []
+    if(not len(query_results)):
+        return False
+    for i in query_results:
+        item = {
+            'arrangementID': i[0],
+            'flrName': i[1],
+        }
+        users.append(item)
+    print(users)
+    return users
