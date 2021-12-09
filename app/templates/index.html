@@ -23,16 +23,28 @@
       <p><mark>The most popular flower recommendation system.</mark></p>
     </main>
     
+    <div class="container">
+        <div class="input-group mb-3">
+            <input type="text" id= "search_request" class="form-control" aria-label="user-name" aria-describedby="basic-addon1">
+            <button id="search-user" type="button" class="btn btn-primary">Search</button>
+        </div>
+    </div>
 
     <div class="container">    
+        <button onclick="location.href = 'home';" id="myButton" class="float-left submit-button btn btn-primary" >Home</button>
+        <button onclick="location.href = 'answer';" id="myButton" class="float-left submit-button btn btn-primary" >Answers</button>
+        <button onclick="location.href = 'arrangement';" id="myButton" class="float-left submit-button btn btn-primary" >Arrangements</button>
+        <button onclick="location.href = 'flower';" id="myButton" class="float-left submit-button btn btn-primary" >Flowers</button>
+        <button onclick="location.href = 'wishlist';" id="myButton" class="float-left submit-button btn btn-primary" >Wishlists</button>
         
+
         <!-- Button trigger modal -->
         <div style="text-align: right;">
-        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="New Task">Add User</button>
+        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal-user" data-source="New Task">Add User</button>
         </div>
 
         
-        <div class="modal fade" id="task-modal" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+        <div class="modal fade" id="task-modal-user" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -43,20 +55,20 @@
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="task-form-display">Name</span>
-                    <input type="text" class="form-control" placeholder="username" aria-label="user-name" aria-describedby="basic-addon1">
+                    <input type="text" id= "username" class="form-control0" placeholder="username" aria-label="user-name" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="task-form-display">Email</span>
-                    <input type="text" class="form-control" placeholder="user@gmail.com" aria-label="user-email" aria-describedby="basic-addon1">
+                    <input type="text" id="email" class="form-control1" placeholder="user@gmail.com" aria-label="user-email" aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="task-form-display">Password</span>
-                    <input type="text" class="form-control" placeholder="user password" aria-label="user-password" aria-describedby="basic-addon1">
+                    <input type="text" id="password" class="form-control2" placeholder="user password" aria-label="user-password" aria-describedby="basic-addon1">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button id="submit-task" type="button" class="btn btn-primary">Save changes</button>
+                <button id="submit-user" type="button" class="btn btn-primary">Save changes</button>
             </div>
             </div>
         </div>
@@ -96,12 +108,11 @@
                     <td><button type="button" class="btn btn-outline-success btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
                 {%endif%} -->
                 
-                <td><button type="button" class="btn btn-outline-info btn-sm edit" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{item.id}}" data-content="{{item.name}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
+                <td><button type="button" class="btn btn-outline-info btn-sm edit" data-bs-toggle="modal" data-bs-target="#task-modal-user" data-source="{{item.id}}" data-name="{{item.name}}" data-email="{{item.email}}" data-password="{{item.password}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
 
                 <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{item.id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
             </tr>
         {% endfor %}
-        
         </tbody>
     </table>
     </div>
