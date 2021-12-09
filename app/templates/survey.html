@@ -1,0 +1,583 @@
+<head>     
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}"> -->
+
+    <!-- <script src="{{ url_for('static', filename='script/login.js') }}"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+</head>
+
+<style>
+    body {
+        font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, Sans-Serif;
+    }
+
+    .main {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        color: #ffffff;
+        overflow-y: scroll;
+        font-size: 24px
+    }
+
+    .bgimg {
+        background-image: url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8N3x8fGVufDB8fHx8&w=1000&q=80");
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+    }
+
+    /* .main::after {
+        content: "";
+        background: #007f67;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    } */
+
+    .main>h1,
+    .main>p {
+        text-align: center;
+        font-family: 35px;
+        z-index: 2;
+        position: relative
+    }
+
+    .main-content {
+        background-color: #009579;
+        max-width: 650px;
+        height: 950px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        margin: 0 auto;
+        /* margin-bottom: 40px; */
+        border-radius: 5px;
+        z-index: 2;
+        position: relative;
+        box-shadow: 0px -1px 10px 5px white;
+    }
+
+    .name,
+    .email,
+    .number,
+    .dropdown,
+    .comment {
+        display: block;
+        width: 100%;
+        height: 35px;
+        padding: 5px 10px;
+        color: #000000;
+        background-color: #ffffff;
+        border: 1px solid #eeeeee;
+        border-radius: 5px;
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
+
+    #name,
+    #email,
+    #number,
+    #dropdown,
+    #comment {
+        display: block;
+        width: 100%;
+        height: 35px;
+        padding: 5px 10px;
+        color: #000000;
+        background-color: #ffffff;
+        border: 1px solid #eeeeee;
+        border-radius: 5px;
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
+
+    label[for=name],
+    label[for=email],
+    label[for=number],
+    label[for=dropdown],
+    label[for=comment] {
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+
+    #video-length,
+    #content-quality,
+    #more-videos,
+    fieldset input {
+        height: 20px;
+        width: 20px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+
+    #comment {
+        min-height: 180px;
+    }
+
+    label[for=comment] {
+        margin-top: 30px
+    }
+
+    .submit {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        background: #37af65;
+        border-radius: 2px;
+        cursor: pointer;
+        border: 0;
+        color: #ffffff;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div class="bgimg main">
+        {% for item in items%}
+        {% if loop.index0 == 3 %}
+        <h1 id="title">Welcome {{item}}</h1>
+        {%endif%}
+
+        {% if loop.index0 == 2 %}
+        <input type="hidden" id="userID" value="{{item}}"></input>
+        {%endif%}
+
+        {% endfor %}
+        <div class="main-content">
+            <div class="form-content">
+                <form id="survey-form">
+                    <label for="name" id="name-label">First Preferred Flower</label>
+                    <select id="flowerInput1" class="dropdown">
+                        <option value="None">---SELECT---</option>
+                        <option value="Arum">Arum</option>
+                        <option value="Ceanothus">Ceanothus</option>
+                        <option value="Rhododendron'">Rhododendron</option>
+                        <option value="'Filipendula">Filipendula</option>
+                        <option value="Lavandula'">Lavandula</option>
+                        <option value="Riccia">Riccia</option>
+                        <option value="Silene">Silene</option>
+                        <option value="Heliconia">Heliconia</option>
+                        <option value="Hedera">Hedera</option>
+                        <option value="Thymus">Thymus</option>
+                        <option value="Aechmea">Aechmea</option>
+                        <option value="Apocynum">Apocynum</option>
+                        <option value="Heuchera">Heuchera</option>
+                        <option value="Pachypodium">Pachypodium</option>
+                        <option value="Isotoma">Isotoma</option>
+                        <option value="'Alternanthera">Alternanthera</option>
+                        <option value="Erica'">Erica</option>
+                        <option value="Commelinantia">Commelinantia</option>
+                        <option value="Curcuma">Curcuma</option>
+                        <option value="Tulipa">Tulipa</option>
+                        <option value="Paeonia">Paeonia</option>
+                        <option value="Coleonema">Coleonema</option>
+                        <option value="Ricciella">Ricciella</option>
+                        <option value="Morus">Morus</option>
+                        <option value="Acer">Acer</option>
+                        <option value="Oxalis">Oxalis</option>
+                        <option value="Zantedeschia">Zantedeschia</option>
+                        <option value="Euonymus">Euonymus</option>
+                        <option value="Muehlenbeckia">Muehlenbeckia</option>
+                        <option value="Scilla">Scilla</option>
+                        <option value="Tiarella">Tiarella'</option>
+                        <option value="Citharexylum">Citharexylum</option>
+                        <option value="Coleonema">Coleonema</option>
+                        <option value="Malus">Malus</option>
+                        <option value="Salvia">Salvia</option>
+                        <option value="Scilla">Scilla</option>
+                        <option value="Sedum'">Sedum'</option>
+                        <option value="Impatiens">Impatiens</option>
+                        <option value="Lobelia">Lobelia</option>
+                        <option value="Weigela">Weigela</option>
+                        <option value="Cercis">Cercis</option>
+                        <option value="Ceiba">Ceiba'</option>
+                        <option value="Gonialoe">Gonialoe</option>
+                        <option value="Thalictrum">Thalictrum</option>
+                        <option value="Fragaria">Fragaria</option>
+                        <option value="Ajuga">Ajuga</option>
+                        <option value="Philadelphus">Philadelphus</option>
+                        <option value="Camellia">Camellia</option>
+                        <option value="Agave">Agave</option>
+                        <option value="Citrus">Citrus</option>
+                        <option value="Euphorbia">Euphorbia</option>
+                        <option value="Leucophyllum">Leucophyllum</option>
+                        <option value="Parodia">Parodia</option>
+                        <option value="Aconitum">Aconitum</option>
+                        <option value="Rosa">Rosa</option>
+                        <option value="Sanguinaria">Sanguinaria</option>
+                        <option value="Lilium">Lilium</option>
+                        <option value="Wisteria">Wisteria</option>
+                        <option value="Hylotelephium">Hylotelephium</option>
+                        <option value="Barringtonia">Barringtonia</option>
+                        <option value="Anacardium">Anacardium</option>
+                        <option value="Lithotoma">Lithotoma</option>
+                        <option value="Eschscholzia">Eschscholzia</option>
+                        <option value="Tropaeolum">Tropaeolum</option>
+                        <option value="Lagerstroemia">Lagerstroemia</option>
+                        <option value="Aegopodium">Aegopodium</option>
+                        <option value="Chrysanthemum">Chrysanthemum</option>
+                        <option value="Erysimum">Erysimum</option>
+                        <option value="Correa">Correa</option>
+                        <option value="Erythronium">Erythronium</option>
+                        <option value="Iris">Iris</option>
+                        <option value="Pelargonium">Pelargonium</option>
+                        <option value="Penstemon">Penstemon</option>
+                        <option value="Kalanchoe">Kalanchoe</option>
+                        <option value="Echeveria">Echeveria</option>
+                        <option value="Delphinium">Delphinium</option>
+                        <option value="Hosta">Hosta</option>
+                        <option value="Matucana">Matucana</option>
+                        <option value="Heliopsis">Heliopsis</option>
+                        <option value="Echinacea">Echinacea</option>
+                        <option value="Papaver">Papaver</option>
+                        <option value="Crassula">Crassula</option>
+                        <option value="Cosmos">Cosmos</option>
+                        <option value="Sherardia">Sherardia</option>
+                        <option value="Dianella">Dianella</option>
+                        <option value="Commelina">Commelina</option>
+                        <option value="Narcissus">Narcissus</option>
+                        <option value="Solanum">Solanum</option>
+                        <option value="Podocarpus">Podocarpus</option>
+                        <option value="Dieffenbachia">Dieffenbachia</option>
+                        <option value="Dahlia">Dahlia</option>
+                        <option value="Primula">Primula</option>
+                        <option value="Diospyros">Diospyros</option>
+                        <option value="Plagiorhegma">Plagiorhegma</option>
+                        <option value="Viola">Viola</option>
+                        <option value="Sambucus">Sambucus</option>
+                        <option value="Hemerocallis">Hemerocallis</option>
+                        <option value="Dianthus">Dianthus</option>
+                        <option value="Begonia">Begonia</option>
+                        <option value="Alstroemeria">Alstroemeria</option>
+                        <option value="Pinus">Pinus</option>
+                        <option value="Epiphyllum">Epiphyllum</option>
+                        <option value="Corydalis">Corydalis</option>
+                        <option value="Coleus">Coleus</option>
+                        <option value="Pterostylis">Pterostylis</option>
+                        <option value="Fuchsia">Fuchsia</option>
+                    </select>
+
+                    <label for="name" id="name-label">Second Preferred Flower</label>
+                    <select id="flowerInput2" class="dropdown">
+                        <option value="None">---SELECT---</option>
+                        <option value="Arum">Arum</option>
+                        <option value="Ceanothus">Ceanothus</option>
+                        <option value="Rhododendron'">Rhododendron</option>
+                        <option value="'Filipendula">Filipendula</option>
+                        <option value="Lavandula'">Lavandula</option>
+                        <option value="Riccia">Riccia</option>
+                        <option value="Silene">Silene</option>
+                        <option value="Heliconia">Heliconia</option>
+                        <option value="Hedera">Hedera</option>
+                        <option value="Thymus">Thymus</option>
+                        <option value="Aechmea">Aechmea</option>
+                        <option value="Apocynum">Apocynum</option>
+                        <option value="Heuchera">Heuchera</option>
+                        <option value="Pachypodium">Pachypodium</option>
+                        <option value="Isotoma">Isotoma</option>
+                        <option value="'Alternanthera">Alternanthera</option>
+                        <option value="Erica'">Erica</option>
+                        <option value="Commelinantia">Commelinantia</option>
+                        <option value="Curcuma">Curcuma</option>
+                        <option value="Tulipa">Tulipa</option>
+                        <option value="Paeonia">Paeonia</option>
+                        <option value="Coleonema">Coleonema</option>
+                        <option value="Ricciella">Ricciella</option>
+                        <option value="Morus">Morus</option>
+                        <option value="Acer">Acer</option>
+                        <option value="Oxalis">Oxalis</option>
+                        <option value="Zantedeschia">Zantedeschia</option>
+                        <option value="Euonymus">Euonymus</option>
+                        <option value="Muehlenbeckia">Muehlenbeckia</option>
+                        <option value="Scilla">Scilla</option>
+                        <option value="Tiarella">Tiarella'</option>
+                        <option value="Citharexylum">Citharexylum</option>
+                        <option value="Coleonema">Coleonema</option>
+                        <option value="Malus">Malus</option>
+                        <option value="Salvia">Salvia</option>
+                        <option value="Scilla">Scilla</option>
+                        <option value="Sedum'">Sedum'</option>
+                        <option value="Impatiens">Impatiens</option>
+                        <option value="Lobelia">Lobelia</option>
+                        <option value="Weigela">Weigela</option>
+                        <option value="Cercis">Cercis</option>
+                        <option value="Ceiba">Ceiba'</option>
+                        <option value="Gonialoe">Gonialoe</option>
+                        <option value="Thalictrum">Thalictrum</option>
+                        <option value="Fragaria">Fragaria</option>
+                        <option value="Ajuga">Ajuga</option>
+                        <option value="Philadelphus">Philadelphus</option>
+                        <option value="Camellia">Camellia</option>
+                        <option value="Agave">Agave</option>
+                        <option value="Citrus">Citrus</option>
+                        <option value="Euphorbia">Euphorbia</option>
+                        <option value="Leucophyllum">Leucophyllum</option>
+                        <option value="Parodia">Parodia</option>
+                        <option value="Aconitum">Aconitum</option>
+                        <option value="Rosa">Rosa</option>
+                        <option value="Sanguinaria">Sanguinaria</option>
+                        <option value="Lilium">Lilium</option>
+                        <option value="Wisteria">Wisteria</option>
+                        <option value="Hylotelephium">Hylotelephium</option>
+                        <option value="Barringtonia">Barringtonia</option>
+                        <option value="Anacardium">Anacardium</option>
+                        <option value="Lithotoma">Lithotoma</option>
+                        <option value="Eschscholzia">Eschscholzia</option>
+                        <option value="Tropaeolum">Tropaeolum</option>
+                        <option value="Lagerstroemia">Lagerstroemia</option>
+                        <option value="Aegopodium">Aegopodium</option>
+                        <option value="Chrysanthemum">Chrysanthemum</option>
+                        <option value="Erysimum">Erysimum</option>
+                        <option value="Correa">Correa</option>
+                        <option value="Erythronium">Erythronium</option>
+                        <option value="Iris">Iris</option>
+                        <option value="Pelargonium">Pelargonium</option>
+                        <option value="Penstemon">Penstemon</option>
+                        <option value="Kalanchoe">Kalanchoe</option>
+                        <option value="Echeveria">Echeveria</option>
+                        <option value="Delphinium">Delphinium</option>
+                        <option value="Hosta">Hosta</option>
+                        <option value="Matucana">Matucana</option>
+                        <option value="Heliopsis">Heliopsis</option>
+                        <option value="Echinacea">Echinacea</option>
+                        <option value="Papaver">Papaver</option>
+                        <option value="Crassula">Crassula</option>
+                        <option value="Cosmos">Cosmos</option>
+                        <option value="Sherardia">Sherardia</option>
+                        <option value="Dianella">Dianella</option>
+                        <option value="Commelina">Commelina</option>
+                        <option value="Narcissus">Narcissus</option>
+                        <option value="Solanum">Solanum</option>
+                        <option value="Podocarpus">Podocarpus</option>
+                        <option value="Dieffenbachia">Dieffenbachia</option>
+                        <option value="Dahlia">Dahlia</option>
+                        <option value="Primula">Primula</option>
+                        <option value="Diospyros">Diospyros</option>
+                        <option value="Plagiorhegma">Plagiorhegma</option>
+                        <option value="Viola">Viola</option>
+                        <option value="Sambucus">Sambucus</option>
+                        <option value="Hemerocallis">Hemerocallis</option>
+                        <option value="Dianthus">Dianthus</option>
+                        <option value="Begonia">Begonia</option>
+                        <option value="Alstroemeria">Alstroemeria</option>
+                        <option value="Pinus">Pinus</option>
+                        <option value="Epiphyllum">Epiphyllum</option>
+                        <option value="Corydalis">Corydalis</option>
+                        <option value="Coleus">Coleus</option>
+                        <option value="Pterostylis">Pterostylis</option>
+                        <option value="Fuchsia">Fuchsia</option>
+                    </select>
+
+                    <label for="name" id="name-label">Third Preferred Flower</label>
+                    <select id="flowerInput3" class="dropdown">
+                        <option value="None">---SELECT---</option>
+                        <option value="Arum">Arum</option>
+                        <option value="Ceanothus">Ceanothus</option>
+                        <option value="Rhododendron'">Rhododendron</option>
+                        <option value="'Filipendula">Filipendula</option>
+                        <option value="Lavandula'">Lavandula</option>
+                        <option value="Riccia">Riccia</option>
+                        <option value="Silene">Silene</option>
+                        <option value="Heliconia">Heliconia</option>
+                        <option value="Hedera">Hedera</option>
+                        <option value="Thymus">Thymus</option>
+                        <option value="Aechmea">Aechmea</option>
+                        <option value="Apocynum">Apocynum</option>
+                        <option value="Heuchera">Heuchera</option>
+                        <option value="Pachypodium">Pachypodium</option>
+                        <option value="Isotoma">Isotoma</option>
+                        <option value="'Alternanthera">Alternanthera</option>
+                        <option value="Erica'">Erica</option>
+                        <option value="Commelinantia">Commelinantia</option>
+                        <option value="Curcuma">Curcuma</option>
+                        <option value="Tulipa">Tulipa</option>
+                        <option value="Paeonia">Paeonia</option>
+                        <option value="Coleonema">Coleonema</option>
+                        <option value="Ricciella">Ricciella</option>
+                        <option value="Morus">Morus</option>
+                        <option value="Acer">Acer</option>
+                        <option value="Oxalis">Oxalis</option>
+                        <option value="Zantedeschia">Zantedeschia</option>
+                        <option value="Euonymus">Euonymus</option>
+                        <option value="Muehlenbeckia">Muehlenbeckia</option>
+                        <option value="Scilla">Scilla</option>
+                        <option value="Tiarella">Tiarella'</option>
+                        <option value="Citharexylum">Citharexylum</option>
+                        <option value="Coleonema">Coleonema</option>
+                        <option value="Malus">Malus</option>
+                        <option value="Salvia">Salvia</option>
+                        <option value="Scilla">Scilla</option>
+                        <option value="Sedum'">Sedum'</option>
+                        <option value="Impatiens">Impatiens</option>
+                        <option value="Lobelia">Lobelia</option>
+                        <option value="Weigela">Weigela</option>
+                        <option value="Cercis">Cercis</option>
+                        <option value="Ceiba">Ceiba'</option>
+                        <option value="Gonialoe">Gonialoe</option>
+                        <option value="Thalictrum">Thalictrum</option>
+                        <option value="Fragaria">Fragaria</option>
+                        <option value="Ajuga">Ajuga</option>
+                        <option value="Philadelphus">Philadelphus</option>
+                        <option value="Camellia">Camellia</option>
+                        <option value="Agave">Agave</option>
+                        <option value="Citrus">Citrus</option>
+                        <option value="Euphorbia">Euphorbia</option>
+                        <option value="Leucophyllum">Leucophyllum</option>
+                        <option value="Parodia">Parodia</option>
+                        <option value="Aconitum">Aconitum</option>
+                        <option value="Rosa">Rosa</option>
+                        <option value="Sanguinaria">Sanguinaria</option>
+                        <option value="Lilium">Lilium</option>
+                        <option value="Wisteria">Wisteria</option>
+                        <option value="Hylotelephium">Hylotelephium</option>
+                        <option value="Barringtonia">Barringtonia</option>
+                        <option value="Anacardium">Anacardium</option>
+                        <option value="Lithotoma">Lithotoma</option>
+                        <option value="Eschscholzia">Eschscholzia</option>
+                        <option value="Tropaeolum">Tropaeolum</option>
+                        <option value="Lagerstroemia">Lagerstroemia</option>
+                        <option value="Aegopodium">Aegopodium</option>
+                        <option value="Chrysanthemum">Chrysanthemum</option>
+                        <option value="Erysimum">Erysimum</option>
+                        <option value="Correa">Correa</option>
+                        <option value="Erythronium">Erythronium</option>
+                        <option value="Iris">Iris</option>
+                        <option value="Pelargonium">Pelargonium</option>
+                        <option value="Penstemon">Penstemon</option>
+                        <option value="Kalanchoe">Kalanchoe</option>
+                        <option value="Echeveria">Echeveria</option>
+                        <option value="Delphinium">Delphinium</option>
+                        <option value="Hosta">Hosta</option>
+                        <option value="Matucana">Matucana</option>
+                        <option value="Heliopsis">Heliopsis</option>
+                        <option value="Echinacea">Echinacea</option>
+                        <option value="Papaver">Papaver</option>
+                        <option value="Crassula">Crassula</option>
+                        <option value="Cosmos">Cosmos</option>
+                        <option value="Sherardia">Sherardia</option>
+                        <option value="Dianella">Dianella</option>
+                        <option value="Commelina">Commelina</option>
+                        <option value="Narcissus">Narcissus</option>
+                        <option value="Solanum">Solanum</option>
+                        <option value="Podocarpus">Podocarpus</option>
+                        <option value="Dieffenbachia">Dieffenbachia</option>
+                        <option value="Dahlia">Dahlia</option>
+                        <option value="Primula">Primula</option>
+                        <option value="Diospyros">Diospyros</option>
+                        <option value="Plagiorhegma">Plagiorhegma</option>
+                        <option value="Viola">Viola</option>
+                        <option value="Sambucus">Sambucus</option>
+                        <option value="Hemerocallis">Hemerocallis</option>
+                        <option value="Dianthus">Dianthus</option>
+                        <option value="Begonia">Begonia</option>
+                        <option value="Alstroemeria">Alstroemeria</option>
+                        <option value="Pinus">Pinus</option>
+                        <option value="Epiphyllum">Epiphyllum</option>
+                        <option value="Corydalis">Corydalis</option>
+                        <option value="Coleus">Coleus</option>
+                        <option value="Pterostylis">Pterostylis</option>
+                        <option value="Fuchsia">Fuchsia</option>
+                    </select>
+
+                    <label for="dropdown">Which color would you prefer?</label>
+                    <select id="colorInput" class="dropdown">
+                        <option value="None">---SELECT---</option>
+                        <option value="Red">Red</option>
+                        <option value="Orange">Orange</option>
+                        <option value="Yellow">Yellow</option>
+                        <option value="Green">Green</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Purple">Purple</option>
+                        <option value="Pink">Pink</option>
+                        <option value="Brown">Brown</option>
+                    </select>
+
+                    <label for="name" id="name-label">Preferred Style</label>
+                    <input class="name" id="styleInput" type="text" placeholder="Enter your preferred style" />
+
+                    <label for="dropdown">What is your party size?</label>
+                    <input class="name" id="partySizeInput" type="text" placeholder="Enter your party size" />
+                    <!-- <select id="partySizeInput" class="dropdown">
+                        <option value="None">---SELECT---</option>
+                        <option value="1-20">1-20</option>
+                        <option value="21-50">21-50</option>
+                        <option value="51-100">51-100</option>
+                        <option value="101-200">101-200</option>
+                        <option value="201-500">201-500</option>
+                        <option value="501-1000">501-1000</option>
+                        <option value="501-1000">1000+</option>
+                    </select> -->
+
+                    <label for="dropdown">What is your budget?</label>
+                    <input class="name" id="budgetInput" type="text"
+                        placeholder="Enter your budget without a dollar sign" />
+                    <!-- <select id="budgetInput" class="dropdown">
+                        <option value="None">---SELECT---</option>
+                        <option value="0-25">0-25</option>
+                        <option value="26-100">26-100</option>
+                        <option value="101-200">101-200</option>
+                        <option value="201-500">201-500</option>
+                        <option value="501-1000">501-1000</option>
+                        <option value="1001-2500">1001-2500</option>
+                        <option value="2500+">2500+</option>
+                    </select> -->
+
+                    <button type="submit" class="submit" id="surveySubmit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.getElementById("surveySubmit").addEventListener("click", () => {
+        console.log(`${document.getElementById('flowerInput1').value}, ${document.getElementById('flowerInput2').value}, ${document.getElementById('flowerInput3').value}`);
+        console.log(document.getElementById("styleInput").value);
+        console.log(document.getElementById("colorInput").value);
+        console.log(document.getElementById("partySizeInput").value);
+        console.log(document.getElementById("budgetInput").value);
+        console.log(document.querySelector('#userID').value)
+        $.ajax({
+            type: 'POST',
+            url: '/survey/create',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'userID': document.querySelector('#userID').value,
+                'party_Size': document.getElementById('partySizeInput').value,
+                'preferred_Flower': `${document.getElementById('flowerInput1').value}, ${document.getElementById('flowerInput2').value}, ${document.getElementById('flowerInput3').value}`,
+                'preferred_Flower1': document.getElementById('flowerInput1').value,
+                'preferred_Flower2': document.getElementById('flowerInput2').value,
+                'preferred_Flower3': document.getElementById('flowerInput3').value,
+                'preferred_Color': document.getElementById('colorInput').value,
+                'preferred_Style': document.getElementById('styleInput').value,
+                'budget': document.getElementById('budgetInput').value
+            }),
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+
+    //(data['userID'], data['party_Size'], data['budget'], data['preferred_Flower'], data['preferred_Color'], data['preferred_Style'], data['satisfaction'])
+</script>
